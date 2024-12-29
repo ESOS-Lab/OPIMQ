@@ -1,0 +1,574 @@
++  uint32_t sidx = get_stream_index (sid);
++  uint32_t eidx = get_stream_index (eid);
++  barrier_stream_entry_t* b_stream = &g_barrierContext.stream[sidx];
++  unsigned int prev_eidx;
++  if (b_stream->stream_id != 0 && b_stream->stream_id != sid) {
++  }
++  if (b_stream->is_first){
++  }
++
++  b_stream->stream_id = sid;
++
++  if (1 == barrier) {
++				
++			} else {
++			}
++		} else {
++			if (eid == 1)
++		}
++	}
++  } else {
++  }
++
++
++
++  uint32_t sidx = get_stream_index (sid);
++  uint32_t eidx = get_stream_index (eid);
++  barrier_stream_entry_t* b_stream = &g_barrierContext.stream[sidx];
++  unsigned int prev_eidx;
++
++  if (0 == eid) {
++  		return EPOCH_STATE_CLOSED_DURABLE_APPED;
++  }
++  if (0 == eidx) {
++  		prev_eidx = N_EPOCH -1 ;
++  } else {
++  		prev_eidx = eidx - 1;
++  }
++  
++  } else {
++  		return EPOCH_STATE_NONE;
++  }
++
++
++
++	barrier_stream_entry_t* stream_entry = &g_barrierContext.stream[sidx];
++
++  	if (stream_entry->is_first){
++  	}
++
++  	stream_entry->stream_id = sid;
++
++  	if (1 == barrier) {
++  	} 
++	else {
++  	}
++
++
++	uint32_t sidx = get_stream_index (sid);
++	uint32_t eidx = get_stream_index (eid);
++
++	barrier_stream_entry_t* b_stream = &g_barrierContext.stream[sidx];
++}
++	uint32_t sidx = get_stream_index (sid);
++	uint32_t eidx = get_stream_index (eid);
++
++	barrier_stream_entry_t* b_stream = &g_barrierContext.stream[sidx];
++
++}
++
++
++			assert(0);
++		}
++		}
++
++
++int map_suspended_entry(barrier_stream_entry_t* stream_entry, uint32_t hidx);
++{
++	uint32_t hidx, tidx, sid;
++	unsigned long head_iter, tail_iter;
++	sid = stream_entry->stream_id;	
++	tail_iter = stream_entry->tail_iter;
++
++	if (need_room){
++		 tidx = (stream_entry->tail_idx + 1) % N_SUSPENSION;
++
++		if (tidx < stream_entry->tail_idx)
++			tail_iter = tail_iter + 1;
++
++	} else {
++		tidx = stream_entry->tail_idx;
++INIT: 
++	hidx = stream_entry->head_idx;
++	head_iter = stream_entry->head_iter;
++
++	if (!(head_iter <= tail_iter))
++	assert(head_iter <= tail_iter);
++	if (!(tail_iter - head_iter <= 1))
++	assert(tail_iter - head_iter <= 1);
++
++	if (tail_iter - head_iter == 1){
++		if (!(tidx < hidx)){
++			if (map_suspended_entry(stream_entry, hidx))
++				goto INIT;
++			for (int i = 0; i < N_SUSPENSION; i += 1){
++				int i_ = (i + hidx) % N_SUSPENSION;	
++				mapping_wait_entry_t* sentry = &stream_entry->suspension_list[i_];
++				if (sentry->valid){
++				}
++			}
++			
++			assert(tidx < hidx);
++		}
++	}
++	if (tail_iter == head_iter){
++		if (!(tidx >= hidx))
++		assert(tidx >= hidx);
++	}
++}
++	uint32_t hidx_1 = stream_entry_1->head_idx,
++		 tidx_1 = stream_entry_1->tail_idx,
++		 hidx_2 = stream_entry_2->head_idx,
++		 tidx_2 = stream_entry_2->tail_idx,
++		 next_idx_1 = (tidx_1+1) % N_SUSPENSION,
++		 next_idx_2 = (tidx_2+1) % N_SUSPENSION;
++
++	unsigned long head_iter_1 = stream_entry_1->head_iter,
++		      next_tail_iter_1 = stream_entry_1->tail_iter,
++		      head_iter_2 = stream_entry_2->head_iter,
++		      next_tail_iter_2 = stream_entry_2->tail_iter;
++
++	if (next_idx_1 < tidx_1)
++		next_tail_iter_1 += 1;
++
++	if (next_idx_2 < tidx_2)
++		next_tail_iter_2 += 1;
++
++	mapping_wait_entry_t *sentry1 = &(stream_entry_1->suspension_list[next_idx_1]);
++	mapping_wait_entry_t *sentry2 = &(stream_entry_2->suspension_list[next_idx_2]);
++	sentry1->pair_entry_pointer = NULL;
++	sentry2->pair_entry_pointer = NULL;
+-		stream_entry_1->valid_length++;			
++		sentry1->valid =  1;
++		sentry1->pair_stream_id = sid2;
++		sentry1->pair_exist = (sid2 > 0)? 1: 0;
++		sentry1->pair_entry_pointer = NULL;
++
++		stream_entry_1->tail_idx = next_idx_1;
++		stream_entry_1->tail_iter = next_tail_iter_1;
++
++
++
++			sid1, eid1, 
++			stream_entry_1->head_iter, stream_entry_1->head_idx, 
++			stream_entry_1->tail_iter, stream_entry_1->tail_idx );
++#endif
++		
+-		stream_entry_2->valid_length++;			
++		sentry2->valid =  1;
++		sentry2->pair_stream_id = sid1;
++		sentry2->pair_exist = 1;
++		sentry2->pair_entry_pointer = NULL;
++
++		stream_entry_2->tail_idx = next_idx_2;
++		stream_entry_2->tail_iter = next_tail_iter_2;
++
++			sid2, eid2, 
++			stream_entry_2->head_iter, stream_entry_2->head_idx, 
++			stream_entry_2->tail_iter, stream_entry_2->tail_idx );
++#endif
+-		stream_entry_1->valid_length++;			
++		sentry1->valid =  1;
++		sentry1->pair_stream_id = sid2;
++		sentry1->pair_exist = 1;
++		sentry1->pair_entry_pointer = sentry2;
++
++		stream_entry_1->tail_iter = next_tail_iter_1;
++		stream_entry_1->tail_idx = next_idx_1;
++			sid1, eid1, 
++			stream_entry_1->head_iter, stream_entry_1->head_idx, 
++			stream_entry_1->tail_iter, stream_entry_1->tail_idx );
++#endif
+-		stream_entry_2->valid_length++;			
++		sentry2->valid =  1;
++		sentry2->pair_stream_id = sid1;
++		sentry2->pair_exist = 1;
++		sentry2->pair_entry_pointer = sentry1;
++
++		stream_entry_2->tail_iter = next_tail_iter_2;
++		stream_entry_2->tail_idx = next_idx_2;
++			sid2, eid2, 
++			stream_entry_2->head_iter, stream_entry_2->head_idx, 
++			stream_entry_2->tail_iter, stream_entry_2->tail_idx );
++#endif
++	 } else{
++		assert(0);
++}
++
++
++{
++	return (eid == 0 && last_eid == 0)? 1: 0;
++}
++
++uint8_t is_mappable(uint32_t sid, uint32_t eid)
++{
++	uint32_t sidx = get_stream_index(sid);
++	barrier_stream_entry_t* b_stream = &g_barrierContext.stream[sidx];
++
++
++}
++
++{
++	return 1;
++
++
++uint32_t pair_is_mappable(mapping_wait_entry_t* sentry)
++{
++	uint32_t sid = sentry->pair_stream_id;
++	barrier_stream_entry_t* b_stream = &g_barrierContext.stream[sidx];
++		return 1;
++		return 0;
++	else{
++		return 1;
++		assert(0);
++	}
++
++}
++
++{
++	uint32_t sid = sentry->pair_stream_id;
++}
++
++void remove_suspension_entry(uint32_t sid, mapping_wait_entry_t* sentry)
++{
++	uint32_t sidx = get_stream_index(sid);
+-	for (i = 0; i < N_SUSPENSION; i++){
+-						stream_entry->suspension_list[index+1] = stream_entry->suspension_list[index];
++	
++	sentry->valid = 0;
++	sentry->lpn = 0;
++	sentry->ppn = 0;
++	sentry->pair_stream_id = 0;
++	sentry->pair_exist = 0;
++	sentry->pair_entry_pointer = NULL;
++}
++
++int map_suspended_entry(barrier_stream_entry_t* stream_entry, uint32_t hidx)
++{
++	mapping_wait_entry_t* sentry;
++	int i, ii, mapped = 0;
++	uint8_t is_first;
++	int first_unmapped_valid_idx;
++	uint32_t tidx = stream_entry->tail_idx;
++	uint32_t vlen = (hidx <= tidx)? tidx - hidx + 1: N_SUSPENSION - (hidx - tidx - 1);
++SCAN:
++	first_unmapped_valid_idx = -1;
++	is_first = 1;
++	for (int i = 0; i < vlen; i += 1){
++		ii = (i + hidx) % N_SUSPENSION;	
++		sentry = &stream_entry->suspension_list[ii];
++#endif
++		if (sentry->valid==0){
++		}
++
++		
++			if (sentry->pair_exist) {
++				if (pair_is_mappable(sentry)){
++					if (sentry->pair_entry_pointer != NULL)
++						remove_suspension_entry(sentry->pair_stream_id, sentry->pair_entry_pointer);
++					goto UPDATE_AP_;
++				} else {
++					if (is_first){
++						first_unmapped_valid_idx = ii;
++						is_first = 0;
+-					stream_entry->valid_length++;
++					
++			} else {
++UPDATE_AP_:
++				UpdateAddrWrite(sentry->lpn, sentry->ppn);
++
++					assert(0);
++				}
++
++
++				}
++				
++#endif
++				remove_suspension_entry(stream_entry->stream_id, sentry);
++				mapped = 1;
++				break;
++
+-				stream_entry->valid_length++;
++		} else {
++			if (is_first){
++				first_unmapped_valid_idx = ii;
++				is_first = 0;
++		}
++	}
++	if (mapped == 0){
++		goto SCAN;
++
++	}
++	unsigned int next_hidx;	
++	if (first_unmapped_valid_idx != -1){
++		next_hidx = first_unmapped_valid_idx;
++#endif
++	} else {
++		next_hidx = (stream_entry->head_idx + 1) % N_SUSPENSION;
++			stream_entry->stream_id,
++			stream_entry->head_iter, stream_entry->head_idx, 
++			stream_entry->tail_iter, stream_entry->tail_idx );
++#endif
++		stream_entry->head_iter += 1;
++	stream_entry->head_idx = next_hidx;
++	return 1;
++
++
++
++
++
++
+-	for (uint32_t sidx = 0; sidx < N_STREA; sidx++) {
++
++		return;
++	}
++	
++		barrier_stream_entry_t* stream_entry = &g_barrierContext.stream[sidx];
++			uint32_t hidx = stream_entry->head_idx,
++		 		 tidx = stream_entry->tail_idx;
++			unsigned long hiter = stream_entry->head_iter,
++		      		      titer = stream_entry->tail_iter;
++			
++
+-			for ( int i=0; i< g_barrierContext.stream[sidx].valid_length; i++) {
++			uint32_t vlen = (hidx <= tidx)? tidx - hidx + 1: N_SUSPENSION - (hidx - tidx - 1);
++			uint32_t i, delta;
++			int first_unmapped_valid_idx = -1;
++			uint8_t is_first = 1; 
++				i = (hidx + delta) % N_SUSPENSION;
++				mapping_wait_entry_t* sentry = &(stream_entry->suspension_list[i]);
++				if (sentry->valid == 0)
++				
++					if (sentry->pair_exist) {
++						if (pair_is_mappable(sentry)){
++							if (sentry->pair_entry_pointer != NULL)
++								remove_suspension_entry(sentry->pair_stream_id, sentry->pair_entry_pointer);
++							goto UPDATE_AP;
++						} else {
++							if (is_first){
++								first_unmapped_valid_idx = i;
++								is_first = 0;
++							}
++						}
++UPDATE_AP:
++						UpdateAddrWrite(sentry->lpn, sentry->ppn);
++						if (first_unmapped_valid_idx == i){
++							is_first = 1;
++							first_unmapped_valid_idx = -1;
++							assert(0);
++						}
++						}
++									stream_entry->stream_id,  
++						remove_suspension_entry(stream_entry->stream_id, sentry);
++
+-	for (uint32_t sidx = 0; sidx < N_STREA; sidx++) {
++					}
++				} else {
++					if (is_first){
++						first_unmapped_valid_idx = i;
++						is_first = 0;
++					}
+-				index++;
+-				index ++;
++			if (first_unmapped_valid_idx == -1){
++				stream_entry->head_idx = 0;
++				stream_entry->tail_idx = 0;
++				stream_entry->head_iter = 0;
++				stream_entry->tail_iter = 0;
++#endif
++			} else {
++					stream_entry->head_iter += 1;
++				stream_entry->head_idx = first_unmapped_valid_idx;
++					stream_entry->stream_id,
++					stream_entry->head_iter, stream_entry->head_idx, 
++					stream_entry->tail_iter, stream_entry->tail_idx );
++#endif
++
+ 	for (uint32_t sidx = 0; sidx < N_STREA; sidx++)
++			g_barrierContext.stream[sidx].is_first = 1;
++			g_barrierContext.stream[sidx].head_idx = 0;
++			g_barrierContext.stream[sidx].tail_idx = 0;
++			g_barrierContext.stream[sidx].head_iter = 0;
++			g_barrierContext.stream[sidx].tail_iter = 0;
++
+ 			for (uint32_t eidx = 0; eidx < N_EPOCH; eidx++)
+-	for (uint32_t sidx = 0; sidx < N_STREA; sidx++)
+-		for (uint32_t eidx = 0; eidx < N_EPOCH; eidx++)
+-			for (uint32_t i = 0; i < N_SUSPENSION; i++) {
++#define N_SUSPENSION			16384
++	unsigned long head_iter;
++	unsigned long tail_iter;
++uint8_t is_mappable(uint32_t sid, uint32_t eid);
++
++
++#define BARRIER_IN_DA 				(1)
++#define SUPPORT_INSERT_SUSPENSION_LIST 		(1)
++#define SUPPORT_SEARCH_SUSPENSION_LIST 		(1)
++
++#define EASURE_LATENCY 			(1)
++
++
++
++#if (SUPPORT_BARRIER_FTL == 1)
++#if (BARRIER_IN_DA == 0)
++			uint32_t sid1 = p_reqEntry->stream_id_1 ;
++			uint32_t sid2 = p_reqEntry->stream_id_2;
++			if (sid1){
++				if (sid2){
++				}
++			}
++#endif
++			
++
++
++		
++#endif
++
++
++	}
++#else
++	if (REQ_CODE_WRITE == reqCode)
++	{
++
++
++
++
++			if ( (mappable_1 || is_mappable(sid1, eid1)) 
++			} else if ( (mappable_1 || is_mappable(sid1, eid1)) 
++#if (SUPPORT_INSERT_SUSPENSION_LIST == 1)
++#endif
++			} else if ( (mappable_2 || is_mappable(sid2, eid2))
++#if (SUPPORT_INSERT_SUSPENSION_LIST == 1)
++#endif
++#if (SUPPORT_INSERT_SUSPENSION_LIST == 1)
++#endif
++	unsigned int ret = 0;
++		if (dataBufEntry != DATA_BUF_FAIL) {
++			if (dataBufapPtr->dataBuf[dataBufEntry].stream_id_1 > 0) {
++		
++				assert(dataBufEntry < AVAILABLE_DATA_BUFFER_ENTRY_COUNT);
++				else if(reqPoolPtr->reqPool[reqSlotTag].reqCode  == REQ_CODE_WRITE)
++					{
++					_DataReadFromNand(reqSlotTag);
++					}
++			} else {
++				reqPoolPtr->reqPool[reqSlotTag].dataBufInfo.entry = dataBufEntry;
++			}
++		} else {
++			reqPoolPtr->reqPool[reqSlotTag].dataBufInfo.entry = dataBufEntry;
++
++			assert(dataBufEntry < AVAILABLE_DATA_BUFFER_ENTRY_COUNT);
++
++
++			Bufferanagement_AddBufToHashList(dataBufEntry);
++
++			if(reqPoolPtr->reqPool[reqSlotTag].reqCode  == REQ_CODE_READ)
++			{
++				_DataReadFromNand(reqSlotTag);
++		    else if(reqPoolPtr->reqPool[reqSlotTag].reqCode  == REQ_CODE_WRITE){
++		    	{
++		    		_DataReadFromNand(reqSlotTag);
++		    	}
++		    }
++		}
++			assert(dataBufEntry < AVAILABLE_DATA_BUFFER_ENTRY_COUNT);
++			assert(dataBufEntry < AVAILABLE_DATA_BUFFER_ENTRY_COUNT);
++			
++			if (reqPoolPtr->reqPool[reqSlotTag].stream_id_2 > 0) {
++				dataBufapPtr->dataBuf[dataBufEntry].stream_id_2 = reqPoolPtr->reqPool[reqSlotTag].stream_id_2;
++			} else {
++				dataBufapPtr->dataBuf[dataBufEntry].stream_id_2 = 0;
++			}
++
++		} else {
++			dataBufapPtr->dataBuf[dataBufEntry].stream_id_1 = 0;
++			dataBufapPtr->dataBuf[dataBufEntry].stream_id_2 = 0;
++
++#if (EASURE_LATENCY == 1)
++XTime startTime_flush, endTime_flush;
++XTime startTime_write, endTime_write;
++
++{
++
++	"%s: %lf st: %lf et: %lf \n", str, 
++}
++#endif
++
++#if (EASURE_LATENCY == 1)
++
++#if (EASURE_LATENCY == 1)
++#endif
++
++#if (EASURE_LATENCY == 1)
++			XTime_GetTime(&startTime_flush);
++#endif
++
++#if (EASURE_LATENCY == 1)
++			XTime_GetTime(&endTime_flush);
++#endif
++
++#if (SUPPORT_BARRIER_FTL == 1)
++#if (SUPPORT_SEARCH_SUSPENSION_LIST == 1)
++
++#if (EASURE_LATENCY == 1)
++#endif
++#if (EASURE_LATENCY == 1)
++#endif
++
++#endif
++#endif
++
++#if (EASURE_LATENCY == 1)
++#endif
++
++#if (EASURE_LATENCY == 1)
++			XTime_GetTime(&startTime_write);
++#endif
++#endif
++	}
++
++#if (EASURE_LATENCY == 1)
++	if (p_nvmCommand->OPC == NVE_OPC_NV_WRITE){
++		XTime_GetTime(&endTime_write);
++#endif
++			p_dataBufEntry->mappable_1 = FALSE;
++			p_dataBufEntry->mappable_2 = (sid2 > 0)? FALSE: TRUE;
++			uint32_t ret;
++#if (BARRIER_IN_DA == 1)
++#else
++#endif
++			if (ret == EPOCH_STATE_CLOSED_DURABLE_APPED || 
++				is_mappable(sid1, eid1))
++#if (BARRIER_IN_DA == 1)
++#else
++#endif
++				if (ret == EPOCH_STATE_CLOSED_DURABLE_APPED 
++						|| is_mappable(sid2,eid2))
++				{
++					p_dataBufEntry->mappable_2 = TRUE;
++				}
++				else if (errorInfo == ERROR_INFO_FAIL){
++				}
++				if (V2FRequestFail(status)){
++				}
+ 		for(wayNo=0 ; wayNo<USER_WAYS ; wayNo++)
++						wayNo, USER_WAYS, 
++				uint32_t mappable_2 = dataBufapPtr->dataBuf[entryIteration].mappable_2;
++				if ((mappable_1 || is_mappable(sid1, eid1)) 
++				} else if ( (mappable_1 || is_mappable(sid1, eid1)) 
++#if (SUPPORT_INSERT_SUSPENSION_LIST == 1)
++#endif
++				} else if ( !(mappable_1 || is_mappable(sid1, eid1)) 
++#if (SUPPORT_INSERT_SUSPENSION_LIST == 1)
++#endif
++#if (SUPPORT_INSERT_SUSPENSION_LIST == 1)
++#endif
++
++			DATA_BUF_ENTRY* p_dataBufEntry_ = Bufferanagement_GetDataBufEntry(entryIteration);
++			p_dataBufEntry_->hashPrevEntry = DATA_BUF_IDX_INVALID;
++			p_dataBufEntry_->hashNextEntry = DATA_BUF_IDX_INVALID;
++
++			dataBufapPtr->dataBuf[entryIteration].stream_id_1 = 0;
++			dataBufapPtr->dataBuf[entryIteration].stream_id_2 = 0;
++			dataBufapPtr->dataBuf[entryIteration].mappable_1 = 0;
++			dataBufapPtr->dataBuf[entryIteration].mappable_2 = 0;
