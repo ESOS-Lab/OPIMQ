@@ -1,6 +1,6 @@
 # OPIMQ: Order-Preserving IO Stack for Multi-Queue Block Devices
+### Maintainer: Jieun Kim (pipiato@kaist.ac.kr)
 
-## Overview
 OPIMQ is an order-preserving IO stack designed to enhance the performance of multi-queue block devices. It eliminates the inefficiencies of conventional order-preservation methods like transfer-and-flush while maximizing parallelism and maintaining storage order in multi-queue environments.
 
 ## Merits of OPIMQ
@@ -29,9 +29,6 @@ OPIMQ introduces a novel approach to ensuring storage order in multi-queue block
 - **Cloud Environments:** Scales efficiently in containerized environments, outperforming traditional IO stacks in scenarios with high concurrency.
 
 OPIMQ redefines the balance between performance and storage order, making it a critical advancement for modern multi-queue storage systems.
-
-### Publication
-Jieun Kim, Joontaek Oh, Juwon Kim, Seung Won Yoo, and Youjip Won, “OPIMQ: Order Preserving IO stack for Multi-Queue Block Device”, In Proc. of USENIX Conference on File and Storage Technologies (FAST) 2025.
 
 ## Installation and Usage
 
