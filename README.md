@@ -30,7 +30,7 @@ OPIMQ is an order-preserving IO stack designed to enhance the performance of mul
    git clone https://github.com/[your-repo]/opimq.git
 2. Build the kernel:
 
-### Mounting with OPIMQ
+### Mounting with OP-EXT4
 1. Format the device with the OP-EXT4 filesystem:
    ```bash
    mkfs -t ext4 [your-nvme-device]
