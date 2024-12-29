@@ -3,25 +3,40 @@
 ## Overview
 OPIMQ is an order-preserving IO stack designed to enhance the performance of multi-queue block devices. It eliminates the inefficiencies of conventional order-preservation methods like transfer-and-flush while maximizing parallelism and maintaining storage order in multi-queue environments.
 
-### Key Features:
-- **Stream and Epoch IDs:** Groups I/O requests with order dependencies into streams and epochs.
-- **Epoch Pinning:** Prevents order violations due to thread migrations in multi-queue devices.
-- **Dual-Stream Write:** Ensures inter-stream order dependencies with minimal overhead.
+## Merits of OPIMQ
 
+OPIMQ introduces a novel approach to ensuring storage order in multi-queue block devices, offering several advantages:
 
----
+### 1. **Enhanced Performance**
+- **Reduced Overheads:** Eliminates the need for costly transfer-and-flush operations by using cache barrier commands.
+- **Improved Scalability:** Achieves up to 2.9× throughput improvement over the default Linux IO stack under workloads like Filebench `varmail`, `dbench`, and `sysbench`.
+- **Full Parallelism Utilization:** Leverages multiple streams and epochs to maximize the internal parallelism of modern SSDs.
 
-## Design Goals
-1. **Order Preservation Without Overhead:** Replace transfer-and-flush with lightweight mechanisms like cache barrier commands.
-2. **Parallelism Maximization:** Support multiple streams to leverage multi-core and multi-queue architectures.
-3. **Multi-Queue Device Compatibility:** Ensure both intra-stream and inter-stream order in devices with multiple submission and completion queues.
+### 2. **Order Preservation**
+- **Intra-Stream Guarantee:** Ensures that write requests within a single stream maintain their order, even when threads migrate across cores.
+- **Inter-Stream Dependency:** Supports dual-stream writes to enforce ordering constraints between dependent streams effectively.
 
----
+### 3. **Crash Consistency**
+- **Robust Recovery:** Maintains order consistency across crashes without requiring changes to existing file systems or applications.
+- **Metadata Backup:** Utilizes SSD-reserved flash memory to store essential metadata, enabling efficient recovery after system failures.
+
+### 4. **Compatibility**
+- **File System Integration:** Fully compatible with file systems like OP-EXT4, enabling seamless integration with existing storage stacks.
+- **Support for Modern SSDs:** Works effectively with NVMe devices, utilizing multi-queue capabilities without compromising storage order.
+
+### 5. **Application Suitability**
+- **Fsync-Intensive Workloads:** Ideal for workloads requiring frequent synchronization, such as databases and journaling file systems.
+- **Cloud Environments:** Scales efficiently in containerized environments, outperforming traditional IO stacks in scenarios with high concurrency.
+
+OPIMQ redefines the balance between performance and storage order, making it a critical advancement for modern multi-queue storage systems.
+
+### Publication
+Jieun Kim, Joontaek Oh, Juwon Kim, Seung Won Yoo, and Youjip Won, “OPIMQ: Order Preserving IO stack for Multi-Queue Block Device”, In Proc. of USENIX Conference on File and Storage Technologies (FAST) 2025.
 
 ## Installation and Usage
 
 ### Requirements
-- **Linux Kernel:** Version 5.18.18 or higher.
+- **Linux Kernel:** Version 5.18.18
 - **Platform:** Compatible with NVMe SSDs
 
 ### Build and Installation
@@ -38,7 +53,6 @@ OPIMQ is an order-preserving IO stack designed to enhance the performance of mul
 2. Mount the device:
    ```bash
    mount -t ext4 [your-nvme-device] [target directory]
-
 
 
 # OPFTL: Order-Preserving Flash Translation Layer
