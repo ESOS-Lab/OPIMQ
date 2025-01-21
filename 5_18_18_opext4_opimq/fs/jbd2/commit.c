@@ -780,15 +780,6 @@ void jbd2_journal_commit_transaction(journal_t *journal)
 		space_left -= tag_bytes;
 		bufs++;
 		
-		// OPIMQ DEBUG
-		/*
-		if (bufs > 70) {
-				printk("[OPIMQ DEBUG} Start");
-				for (int i = 0; i<bufs; i++)
-					printk("[OPIMQ DEBUG] %llu\n", orig_blocknrs[i]);
-				printk("[OPIMQ DEBUG} End");
-		}
-		*/
 		if (first_tag) {
 			memcpy (tagp, journal->j_uuid, 16);
 			tagp += 16;

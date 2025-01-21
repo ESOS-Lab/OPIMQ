@@ -223,9 +223,8 @@ TRACE_EVENT(nvme_sq,
 		__entry->qid, __entry->sq_head, __entry->sq_tail
 	)
 */
-	TP_printk("PID %d qid %d cpuid %d cmdid %u iolat %llu optype %s",
-		__entry->pid, __entry->qid, __entry->cpuid, __entry->cid, __entry->iolat, 
-			show_opcode_name(__entry->qid, __entry->opcode,
+	TP_printk("iolat %llu optype %s",
+	 __entry->iolat, show_opcode_name(__entry->qid, __entry->opcode,
 				__entry->fctype))
 );
 

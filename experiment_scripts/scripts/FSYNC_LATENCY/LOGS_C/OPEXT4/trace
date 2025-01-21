@@ -1,0 +1,38 @@
+# tracer: nop
+#
+# entries-in-buffer/entries-written: 26/26   #P:40
+#
+#                                _-----=> irqs-off/BH-disabled
+#                               / _----=> need-resched
+#                              | / _---=> hardirq/softirq
+#                              || / _--=> preempt-depth
+#                              ||| / _-=> migrate-disable
+#                              |||| /     delay
+#           TASK-PID     CPU#  |||||  TIMESTAMP  FUNCTION
+#              | |         |   |||||     |         |
+             fio-2822    [002] .....   589.579984: nvme_setup_cmd: cmd_type:nvme_cmd_read sid1: 0 eid1: 0 sid2: 0 eid2: 0 bflag: 0 qid: 22 cmdid:32834
+          <idle>-0       [002] d.h1.   589.580595: nvme_sq:  PID 0 qid 22 cpuid 2 iolat 608243 cmd=(nvme_cmd_read) cmdid:32834
+             fio-2822    [016] .....   589.748112: nvme_setup_cmd: cmd_type:nvme_cmd_read sid1: 0 eid1: 0 sid2: 0 eid2: 0 bflag: 0 qid: 29 cmdid:28800
+          <idle>-0       [016] d.h1.   589.748721: nvme_sq:  PID 0 qid 29 cpuid 16 iolat 608066 cmd=(nvme_cmd_read) cmdid:28800
+             fio-2822    [016] .....   589.748774: nvme_setup_cmd: cmd_type:nvme_cmd_read sid1: 0 eid1: 0 sid2: 0 eid2: 0 bflag: 0 qid: 29 cmdid:20612
+             fio-2822    [016] .....   589.748775: nvme_setup_cmd: cmd_type:nvme_cmd_read sid1: 0 eid1: 0 sid2: 0 eid2: 0 bflag: 0 qid: 29 cmdid:131
+             fio-2822    [016] .....   589.748775: nvme_setup_cmd: cmd_type:nvme_cmd_read sid1: 0 eid1: 0 sid2: 0 eid2: 0 bflag: 0 qid: 29 cmdid:8322
+             fio-2822    [016] .....   589.748775: nvme_setup_cmd: cmd_type:nvme_cmd_read sid1: 0 eid1: 0 sid2: 0 eid2: 0 bflag: 0 qid: 29 cmdid:61569
+             fio-2822    [016] .....   589.748776: nvme_setup_cmd: cmd_type:nvme_cmd_read sid1: 0 eid1: 0 sid2: 0 eid2: 0 bflag: 0 qid: 29 cmdid:32896
+          <idle>-0       [016] d.h1.   589.748825: nvme_sq:  PID 0 qid 29 cpuid 16 iolat 48852 cmd=(nvme_cmd_read) cmdid:20612
+          <idle>-0       [016] d.h1.   589.748834: nvme_sq:  PID 0 qid 29 cpuid 16 iolat 57461 cmd=(nvme_cmd_read) cmdid:131
+          <idle>-0       [016] d.h1.   589.748834: nvme_sq:  PID 0 qid 29 cpuid 16 iolat 57655 cmd=(nvme_cmd_read) cmdid:8322
+          <idle>-0       [016] d.h1.   589.748838: nvme_sq:  PID 0 qid 29 cpuid 16 iolat 61639 cmd=(nvme_cmd_read) cmdid:61569
+          <idle>-0       [016] d.h1.   589.748844: nvme_sq:  PID 0 qid 29 cpuid 16 iolat 68109 cmd=(nvme_cmd_read) cmdid:32896
+             fio-2864    [020] .....   589.864008: ext4_sync_file_enter: PID 2864 cpuid 20 datasync 0 
+             fio-2864    [020] .....   589.864035: nvme_setup_cmd: cmd_type:nvme_cmd_write sid1: 2864 eid1: 0 sid2: 2816 eid2: 0 bflag: 1 qid: 31 cmdid:21376
+  jbd2/nvme3n1-8-2816    [023] .....   589.864061: nvme_setup_cmd: cmd_type:nvme_cmd_write sid1: 2816 eid1: 1 sid2: 0 eid2: 0 bflag: 0 qid: 12 cmdid:4677
+          <idle>-0       [023] d.h1.   589.864278: nvme_sq:  PID 0 qid 12 cpuid 23 iolat 213704 cmd=(nvme_cmd_write) cmdid:4677
+          <idle>-0       [020] d.h1.   589.864279: nvme_sq:  PID 0 qid 31 cpuid 20 iolat 242222 cmd=(nvme_cmd_write) cmdid:21376
+  jbd2/nvme3n1-8-2816    [023] .....   589.864344: nvme_setup_cmd: cmd_type:nvme_cmd_write sid1: 2816 eid1: 1 sid2: 0 eid2: 0 bflag: 1 qid: 12 cmdid:8773
+  jbd2/nvme3n1-8-2816    [023] .....   589.864358: nvme_setup_cmd: cmd_type:nvme_cmd_write sid1: 2816 eid1: 2 sid2: 0 eid2: 0 bflag: 1 qid: 12 cmdid:582
+          <idle>-0       [023] d.h1.   589.864371: nvme_sq:  PID 0 qid 12 cpuid 23 iolat 22486 cmd=(nvme_cmd_write) cmdid:8773
+          <idle>-0       [023] d.h1.   589.864371: nvme_sq:  PID 0 qid 12 cpuid 23 iolat 12420 cmd=(nvme_cmd_write) cmdid:582
+   kworker/23:1H-791     [023] ...1.   589.864403: nvme_setup_cmd: cmd_type:nvme_cmd_flush sid1: 2816 eid1: 3 sid2: 0 eid2: 0 bflag: 1 qid: 12 cmdid:21061
+          <idle>-0       [023] d.h1.   589.865962: nvme_sq:  PID 0 qid 12 cpuid 23 iolat 1558407 cmd=(nvme_cmd_flush) cmdid:21061
+             fio-2864    [020] .....   589.866013: ext4_sync_file_exit: PID 2864 cpuid 20 total_time 2003356 data 28447 journal 1974909 datasync 0 needs_barrier 0 

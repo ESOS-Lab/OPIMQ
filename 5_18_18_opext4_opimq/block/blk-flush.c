@@ -76,6 +76,7 @@
 #include "blk-mq-tag.h"
 #include "blk-mq-sched.h"
 
+#define ENABLE_OPIMQ
 /* PREFLUSH/FUA sequences */
 enum {
 	REQ_FSEQ_PREFLUSH	= (1 << 0), /* pre-flushing in progress */
@@ -95,6 +96,11 @@ enum {
 
 static void blk_kick_flush(struct request_queue *q,
 			   struct blk_flush_queue *fq, unsigned int flags);
+
+#ifdef ENABLE_OPIMQ
+static void blk_kick_flush_opimq(struct request_queue *q,
+			   struct blk_flush_queue *fq, unsigned int flags, struct request *rq);
+#endif
 
 static inline struct blk_flush_queue *
 blk_get_flush_queue(struct request_queue *q, struct blk_mq_ctx *ctx)
@@ -214,8 +220,17 @@ static void blk_flush_complete_seq(struct request *rq,
 	default:
 		BUG();
 	}
-
+#ifdef ENABLE_OPIMQ
+	if (rq->stream_id_1 > 0) {
+		blk_kick_flush_opimq(q, fq, cmd_flags, rq);
+	}
+	else {
+		blk_kick_flush(q, fq, cmd_flags);
+	}
+#else
 	blk_kick_flush(q, fq, cmd_flags);
+#endif
+
 }
 
 static void flush_end_io(struct request *flush_rq, blk_status_t error)
@@ -314,7 +329,6 @@ static void blk_kick_flush(struct request_queue *q, struct blk_flush_queue *fq,
 	fq->flush_pending_idx ^= 1;
 
 	blk_rq_init(q, flush_rq);
-
 	/*
 	 * In case of none scheduler, borrow tag from the first request
 	 * since they can't be in flight at the same time. And acquire
@@ -353,6 +367,79 @@ static void blk_kick_flush(struct request_queue *q, struct blk_flush_queue *fq,
 
 	blk_flush_queue_rq(flush_rq, false);
 }
+
+#ifdef ENABLE_OPIMQ
+static void blk_kick_flush_opimq(struct request_queue *q, struct blk_flush_queue *fq,
+			   unsigned int flags, struct request *req)
+{
+	struct list_head *pending = &fq->flush_queue[fq->flush_pending_idx];
+	struct request *first_rq =
+		list_first_entry(pending, struct request, flush.list);
+	struct request *flush_rq = fq->flush_rq;
+
+	/* C1 described at the top of this file */
+	if (fq->flush_pending_idx != fq->flush_running_idx || list_empty(pending))
+		return;
+
+	/* C2 and C3 */
+	if (!list_empty(&fq->flush_data_in_flight) &&
+	    time_before(jiffies,
+			fq->flush_pending_since + FLUSH_PENDING_TIMEOUT))
+		return;
+
+	/*
+	 * Issue flush and toggle pending_idx.  This makes pending_idx
+	 * different from running_idx, which means flush is in flight.
+	 */
+	fq->flush_pending_idx ^= 1;
+
+	blk_rq_init(q, flush_rq);
+	if (req->stream_id_1 > 0) {
+		if (req->j_task!=NULL) {
+			flush_rq->j_task = req->j_task;
+		}
+		flush_rq->stream_id_1 = req->stream_id_1;
+	}
+	/*
+	 * In case of none scheduler, borrow tag from the first request
+	 * since they can't be in flight at the same time. And acquire
+	 * the tag's ownership for flush req.
+	 *
+	 * In case of IO scheduler, flush rq need to borrow scheduler tag
+	 * just for cheating put/get driver tag.
+	 */
+	flush_rq->mq_ctx = first_rq->mq_ctx;
+	flush_rq->mq_hctx = first_rq->mq_hctx;
+
+	if (!q->elevator) {
+		flush_rq->tag = first_rq->tag;
+
+		/*
+		 * We borrow data request's driver tag, so have to mark
+		 * this flush request as INFLIGHT for avoiding double
+		 * account of this driver tag
+		 */
+		flush_rq->rq_flags |= RQF_MQ_INFLIGHT;
+	} else
+		flush_rq->internal_tag = first_rq->internal_tag;
+
+	flush_rq->cmd_flags = REQ_OP_FLUSH | REQ_PREFLUSH;
+	flush_rq->cmd_flags |= (flags & REQ_DRV) | (flags & REQ_FAILFAST_MASK);
+	flush_rq->rq_flags |= RQF_FLUSH_SEQ;
+	flush_rq->end_io = flush_end_io;
+	/*
+	 * Order WRITE ->end_io and WRITE rq->ref, and its pair is the one
+	 * implied in refcount_inc_not_zero() called from
+	 * blk_mq_find_and_get_req(), which orders WRITE/READ flush_rq->ref
+	 * and READ flush_rq->end_io
+	 */
+	smp_wmb();
+	req_ref_set(flush_rq, 1);
+
+	blk_flush_queue_rq(flush_rq, false);
+}
+
+#endif
 
 static void mq_flush_data_end_io(struct request *rq, blk_status_t error)
 {
@@ -461,9 +548,14 @@ int blkdev_issue_flush(struct block_device *bdev)
 	struct bio bio;
 
 	bio_init(&bio, bdev, NULL, 0, REQ_OP_WRITE | REQ_PREFLUSH);
-//#ifdef ENABLE_OPIMQ
-//	bio.ordered_flag = current->pid;
-//#endif
+
+	#ifdef ENABLE_OPIMQ
+	bio.j_task = current;
+	bio.is_jc = 0;
+	bio.tx_id = 0;
+	bio.ordered_flag = current->pid;
+	bio.barrier_flag = 1;
+	#endif
 	return submit_bio_wait(&bio);
 }
 EXPORT_SYMBOL(blkdev_issue_flush);

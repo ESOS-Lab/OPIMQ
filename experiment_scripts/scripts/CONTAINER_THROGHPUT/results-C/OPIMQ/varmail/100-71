@@ -1,0 +1,31 @@
+My process ID is 21
+After Trap
+Filebench Version 1.5-alpha3
+0.000: Allocated 177MB of shared memory
+0.002: Varmail Version 3.0 personality successfully loaded
+0.002: Populating and pre-allocating filesets
+0.003: bigfileset populated: 1000 files, avg. dir. width = 1000000, avg. dir. depth = 0.5, 0 leafdirs, 14.959MB total size
+0.003: Removing bigfileset tree (if exists)
+0.009: Pre-allocating directories in bigfileset tree
+0.009: Pre-allocating files in bigfileset tree
+0.067: Waiting for pre-allocation to finish (in case of a parallel pre-allocation)
+0.067: Population and pre-allocation of filesets completed
+0.067: Starting 1 filereader instances
+1.071: Running...
+61.143: Run took 60 seconds...
+61.148: Per-Operation Breakdown
+closefile4           19762ops      329ops/s   0.0mb/s    0.002ms/op [0.001ms - 9.408ms]
+readfile4            19762ops      329ops/s   5.4mb/s    2.856ms/op [0.001ms - 88.479ms]
+openfile4            19762ops      329ops/s   0.0mb/s    0.014ms/op [0.003ms - 15.582ms]
+closefile3           19762ops      329ops/s   0.0mb/s    0.004ms/op [0.001ms - 11.825ms]
+fsyncfile3           19768ops      329ops/s   0.0mb/s   55.719ms/op [16.049ms - 241.384ms]
+appendfilerand3      19784ops      329ops/s   2.6mb/s    1.592ms/op [0.004ms - 77.519ms]
+readfile3            19784ops      329ops/s   5.3mb/s    3.007ms/op [0.001ms - 79.370ms]
+openfile3            19784ops      329ops/s   0.0mb/s    0.013ms/op [0.003ms - 9.213ms]
+closefile2           19784ops      329ops/s   0.0mb/s    0.005ms/op [0.001ms - 14.803ms]
+fsyncfile2           19787ops      329ops/s   0.0mb/s   53.721ms/op [16.648ms - 236.152ms]
+appendfilerand2      19802ops      330ops/s   2.6mb/s    0.062ms/op [0.007ms - 47.806ms]
+createfile2          19802ops      330ops/s   0.0mb/s    0.213ms/op [0.023ms - 25.855ms]
+deletefile1          19802ops      330ops/s   0.0mb/s    4.003ms/op [0.024ms - 77.000ms]
+61.148: IO Summary: 257145 ops 4280.632 ops/s 658/659 rd/wr  15.9mb/s 9.323ms/op
+61.148: Shutting down processes

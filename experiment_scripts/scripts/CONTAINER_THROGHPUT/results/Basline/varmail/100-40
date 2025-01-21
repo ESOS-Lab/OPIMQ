@@ -1,0 +1,31 @@
+My process ID is 93
+After Trap
+Filebench Version 1.5-alpha3
+0.000: Allocated 177MB of shared memory
+0.002: Varmail Version 3.0 personality successfully loaded
+0.002: Populating and pre-allocating filesets
+0.003: bigfileset populated: 1000 files, avg. dir. width = 1000000, avg. dir. depth = 0.5, 0 leafdirs, 14.959MB total size
+0.003: Removing bigfileset tree (if exists)
+0.073: Pre-allocating directories in bigfileset tree
+0.073: Pre-allocating files in bigfileset tree
+0.134: Waiting for pre-allocation to finish (in case of a parallel pre-allocation)
+0.134: Population and pre-allocation of filesets completed
+0.135: Starting 1 filereader instances
+1.150: Running...
+61.216: Run took 60 seconds...
+61.219: Per-Operation Breakdown
+closefile4           17862ops      297ops/s   0.0mb/s    0.002ms/op [0.001ms - 1.948ms]
+readfile4            17862ops      297ops/s   4.9mb/s    2.286ms/op [0.001ms - 108.838ms]
+openfile4            17862ops      297ops/s   0.0mb/s    0.016ms/op [0.003ms - 11.583ms]
+closefile3           17862ops      297ops/s   0.0mb/s    0.005ms/op [0.001ms - 10.041ms]
+fsyncfile3           17862ops      297ops/s   0.0mb/s   63.152ms/op [10.955ms - 323.764ms]
+appendfilerand3      17891ops      298ops/s   2.3mb/s    1.305ms/op [0.004ms - 104.329ms]
+readfile3            17891ops      298ops/s   4.9mb/s    2.452ms/op [0.001ms - 110.013ms]
+openfile3            17891ops      298ops/s   0.0mb/s    0.021ms/op [0.003ms - 36.468ms]
+closefile2           17891ops      298ops/s   0.0mb/s    0.005ms/op [0.001ms - 5.520ms]
+fsyncfile2           17891ops      298ops/s   0.0mb/s   61.004ms/op [11.720ms - 327.044ms]
+appendfilerand2      17901ops      298ops/s   2.3mb/s    0.067ms/op [0.009ms - 17.816ms]
+createfile2          17901ops      298ops/s   0.0mb/s    0.206ms/op [0.025ms - 16.688ms]
+deletefile1          17901ops      298ops/s   0.0mb/s    3.503ms/op [0.026ms - 102.467ms]
+61.219: IO Summary: 232468 ops 3870.268 ops/s 595/596 rd/wr  14.4mb/s 10.307ms/op
+61.219: Shutting down processes

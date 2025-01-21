@@ -1,0 +1,31 @@
+My process ID is 349
+After Trap
+Filebench Version 1.5-alpha3
+0.000: Allocated 177MB of shared memory
+0.002: Varmail Version 3.0 personality successfully loaded
+0.002: Populating and pre-allocating filesets
+0.044: bigfileset populated: 1000 files, avg. dir. width = 1000000, avg. dir. depth = 0.5, 0 leafdirs, 14.959MB total size
+0.044: Removing bigfileset tree (if exists)
+2.419: Pre-allocating directories in bigfileset tree
+2.419: Pre-allocating files in bigfileset tree
+2.546: Waiting for pre-allocation to finish (in case of a parallel pre-allocation)
+2.546: Population and pre-allocation of filesets completed
+2.546: Starting 1 filereader instances
+3.563: Running...
+63.773: Run took 60 seconds...
+63.858: Per-Operation Breakdown
+closefile4           3898ops       65ops/s   0.0mb/s    0.011ms/op [0.000ms - 14.003ms]
+readfile4            3898ops       65ops/s   1.0mb/s   15.324ms/op [0.002ms - 253.892ms]
+openfile4            3898ops       65ops/s   0.0mb/s    0.019ms/op [0.004ms - 10.176ms]
+closefile3           3898ops       65ops/s   0.0mb/s    0.009ms/op [0.001ms - 19.858ms]
+fsyncfile3           3898ops       65ops/s   0.0mb/s  267.773ms/op [29.092ms - 974.189ms]
+appendfilerand3      3926ops       65ops/s   0.5mb/s    8.067ms/op [0.004ms - 364.828ms]
+readfile3            3926ops       65ops/s   1.0mb/s   15.367ms/op [0.001ms - 435.247ms]
+openfile3            3926ops       65ops/s   0.0mb/s    0.051ms/op [0.004ms - 100.291ms]
+closefile2           3926ops       65ops/s   0.0mb/s    0.019ms/op [0.001ms - 32.589ms]
+fsyncfile2           3926ops       65ops/s   0.0mb/s  270.929ms/op [60.477ms - 1067.658ms]
+appendfilerand2      3938ops       65ops/s   0.5mb/s    0.212ms/op [0.009ms - 431.777ms]
+createfile2          3938ops       65ops/s   0.0mb/s    2.649ms/op [0.027ms - 639.296ms]
+deletefile1          3932ops       65ops/s   0.0mb/s   25.973ms/op [0.033ms - 719.462ms]
+63.858: IO Summary: 50928 ops 845.090 ops/s 130/130 rd/wr   3.0mb/s 46.595ms/op
+63.858: Shutting down processes

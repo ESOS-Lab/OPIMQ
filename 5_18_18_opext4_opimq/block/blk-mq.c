@@ -3068,23 +3068,9 @@ void blk_mq_submit_bio(struct bio *bio)
 	struct request *rq;
 	unsigned int nr_segs = 1;
 	blk_status_t ret;
-//	char comm[TASK_COMM_LEN];
 	unsigned int tx_id;
 
 	tx_id = bio->tx_id;
-
-//	if ((!strcmp(comm, "fio")) && (tx_id == 0)) {
-//		printk(KERN_ERR "[OPIMQ-DEBUG] blk_mq_submit_bio PID: %d TXID: %d\n",
-//				current->pid, tx_id);
-//	}
-
-	/* OPIMQ */	
-//	trace_block_getbio(bio);
-//	memcpy(comm, current->comm, TASK_COMM_LEN);
-			
-	//if ((!strcmp(comm, "kworker")) && (op_is_write(bio_op(bio)) && (bio->ordered_flag >0))) {
-	//	dump_stack();
-	//}
 
 	blk_queue_bounce(q, &bio);
 
@@ -3108,11 +3094,6 @@ void blk_mq_submit_bio(struct bio *bio)
 
 	current->cpu_id =  raw_smp_processor_id();
 	
-//	if ((bio->ordered_flag >0) && (rq->mq_hctx->queue_num + 1 != current->queue_num) && (!strcmp(comm, "mobibench"))){
-//		printk(KERN_ERR "[After TAG] CPU %d PID %d hctx->queue_num %d current->queue_num %d\n", 
-//				current_thread_info()->cpu, current->pid, rq->mq_hctx->queue_num +1, current->queue_num); 
-//	}
-
 	blk_mq_bio_to_request(rq, bio, nr_segs);
 
 	
@@ -3130,7 +3111,7 @@ void blk_mq_submit_bio(struct bio *bio)
 		rq->stream_id_1 = bio->ordered_flag;
 		rq->epoch_id_1 = atomic_read(&current->epoch_counter);
 		rq->is_jc = bio->is_jc; //debugging
-	
+
 		if (bio->j_task != NULL) {
 			rq->epoch_id_2 = atomic_read(&bio->j_task->epoch_counter);
 			rq->j_task = bio->j_task;
@@ -3139,10 +3120,8 @@ void blk_mq_submit_bio(struct bio *bio)
 		}
 		rq->tx_id = tx_id;
 	}
-	
+
 	rq->barrier_flag = 0;
-	//printk(KERN_ERR "[submit_bio] request sid1 %d bflag %d\n",
-	//		rq->stream_id_1, rq->barrier_flag);
 #endif 
 
 

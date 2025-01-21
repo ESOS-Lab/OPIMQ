@@ -1,0 +1,31 @@
+My process ID is 132
+After Trap
+Filebench Version 1.5-alpha3
+0.000: Allocated 177MB of shared memory
+0.002: Varmail Version 3.0 personality successfully loaded
+0.002: Populating and pre-allocating filesets
+0.016: bigfileset populated: 1000 files, avg. dir. width = 1000000, avg. dir. depth = 0.5, 0 leafdirs, 14.959MB total size
+0.016: Removing bigfileset tree (if exists)
+0.293: Pre-allocating directories in bigfileset tree
+0.318: Pre-allocating files in bigfileset tree
+127.010: Waiting for pre-allocation to finish (in case of a parallel pre-allocation)
+127.010: Population and pre-allocation of filesets completed
+127.014: Starting 1 filereader instances
+128.038: Running...
+188.051: Run took 60 seconds...
+188.055: Per-Operation Breakdown
+closefile4           427ops        7ops/s   0.0mb/s    0.001ms/op [0.000ms - 0.017ms]
+readfile4            427ops        7ops/s   0.1mb/s    0.015ms/op [0.003ms - 0.041ms]
+openfile4            427ops        7ops/s   0.0mb/s    0.013ms/op [0.004ms - 0.042ms]
+closefile3           427ops        7ops/s   0.0mb/s    0.004ms/op [0.001ms - 0.027ms]
+fsyncfile3           427ops        7ops/s   0.0mb/s 2364.593ms/op [7.949ms - 8258.879ms]
+appendfilerand3      440ops        7ops/s   0.1mb/s    0.018ms/op [0.003ms - 0.068ms]
+readfile3            440ops        7ops/s   0.1mb/s    0.015ms/op [0.004ms - 0.094ms]
+openfile3            440ops        7ops/s   0.0mb/s    0.013ms/op [0.005ms - 0.057ms]
+closefile2           440ops        7ops/s   0.0mb/s    0.004ms/op [0.001ms - 0.021ms]
+fsyncfile2           441ops        7ops/s   0.0mb/s 2872.102ms/op [18.073ms - 8240.965ms]
+appendfilerand2      467ops        8ops/s   0.1mb/s    0.016ms/op [0.005ms - 0.056ms]
+createfile2          467ops        8ops/s   0.0mb/s    7.745ms/op [0.018ms - 1122.515ms]
+deletefile1          467ops        8ops/s   0.0mb/s   98.120ms/op [0.022ms - 1437.460ms]
+188.055: IO Summary:  5737 ops 95.597 ops/s 14/15 rd/wr   0.3mb/s 405.397ms/op
+188.055: Shutting down processes

@@ -1885,11 +1885,11 @@ static int jbd2_write_superblock(journal_t *journal, int write_flags)
 	get_bh(bh);
 	bh->b_end_io = end_buffer_write_sync;
 
-//#ifdef ENABLE_OPIMQ
-//	ret = submit_bh_opimq(REQ_OP_WRITE, write_flags, bh, 0, 0, 0);
-//#else
+#ifdef ENABLE_OPIMQ
+	ret = submit_bh_opimq(REQ_OP_WRITE, write_flags, bh, 0, 0, 0);
+#else
 	ret = submit_bh(REQ_OP_WRITE, write_flags, bh);
-//#endif
+#endif
 
 	wait_on_buffer(bh);
 	if (buffer_write_io_error(bh)) {

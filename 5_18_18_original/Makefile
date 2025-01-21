@@ -3,7 +3,7 @@ VERSION = 5
 PATCHLEVEL = 18
 SUBLEVEL = 18
 #EXTRAVERSION = +time+mq
-EXTRAVERSION = +time+setq
+EXTRAVERSION = +original
 NAME = Superb Owl
 
 # *DOCUMENTATION*

@@ -1,0 +1,41 @@
+# tracer: nop
+#
+# entries-in-buffer/entries-written: 29/29   #P:40
+#
+#                                _-----=> irqs-off/BH-disabled
+#                               / _----=> need-resched
+#                              | / _---=> hardirq/softirq
+#                              || / _--=> preempt-depth
+#                              ||| / _-=> migrate-disable
+#                              |||| /     delay
+#           TASK-PID     CPU#  |||||  TIMESTAMP  FUNCTION
+#              | |         |   |||||     |         |
+             fio-36462   [008] ..... 194566.894690: nvme_setup_cmd: cmd_type:nvme_cmd_read sid1: 0 eid1: 0 sid2: 0 eid2: 0 bflag: 0 qid: 25 cmdid:12759
+          <idle>-0       [008] d.h1. 194566.903185: nvme_sq:  PID 0 qid 25 cpuid 8 iolat 8492913 cmd=(nvme_cmd_read) cmdid:12759
+             fio-36504   [010] ..... 194567.019105: ext4_sync_file_enter: PID 36504 cpuid 10 datasync 0 
+             fio-36504   [010] ..... 194567.019127: nvme_setup_cmd: cmd_type:nvme_cmd_write sid1: 36504 eid1: 0 sid2: 27469 eid2: 48193 bflag: 1 qid: 26 cmdid:8722
+  jbd2/nvme3n1-8-27469   [022] ..... 194567.019168: nvme_setup_cmd: cmd_type:nvme_cmd_write sid1: 27469 eid1: 48194 sid2: 0 eid2: 0 bflag: 1 qid: 32 cmdid:40997
+  jbd2/nvme3n1-8-27469   [022] ..... 194567.019176: nvme_setup_cmd: cmd_type:nvme_cmd_write sid1: 27469 eid1: 48195 sid2: 0 eid2: 0 bflag: 1 qid: 32 cmdid:36902
+          <idle>-0       [010] d.h1. 194567.027580: nvme_sq:  PID 0 qid 26 cpuid 10 iolat 8452221 cmd=(nvme_cmd_write) cmdid:8722
+          <idle>-0       [022] d.h1. 194567.027591: nvme_sq:  PID 0 qid 32 cpuid 22 iolat 8419515 cmd=(nvme_cmd_write) cmdid:40997
+          <idle>-0       [022] d.h1. 194567.027592: nvme_sq:  PID 0 qid 32 cpuid 22 iolat 8415863 cmd=(nvme_cmd_write) cmdid:36902
+   kworker/22:1H-680     [022] ...1. 194567.027637: nvme_setup_cmd: cmd_type:nvme_cmd_flush sid1: 27469 eid1: 48196 sid2: 0 eid2: 0 bflag: 1 qid: 32 cmdid:49189
+          <idle>-0       [022] d.h1. 194567.029387: nvme_sq:  PID 0 qid 32 cpuid 22 iolat 1749166 cmd=(nvme_cmd_flush) cmdid:49189
+             fio-36504   [010] ..... 194567.029481: ext4_sync_file_enter: PID 36504 cpuid 10 datasync 0 
+             fio-36504   [010] ..... 194567.029506: nvme_setup_cmd: cmd_type:nvme_cmd_write sid1: 36504 eid1: 1 sid2: 27469 eid2: 48197 bflag: 1 qid: 26 cmdid:12818
+          <idle>-0       [010] d.h1. 194567.029526: nvme_sq:  PID 0 qid 26 cpuid 10 iolat 18840 cmd=(nvme_cmd_write) cmdid:12818
+  jbd2/nvme3n1-8-27469   [022] ..... 194567.029536: nvme_setup_cmd: cmd_type:nvme_cmd_write sid1: 27469 eid1: 48198 sid2: 0 eid2: 0 bflag: 1 qid: 32 cmdid:40998
+  jbd2/nvme3n1-8-27469   [022] ..... 194567.029543: nvme_setup_cmd: cmd_type:nvme_cmd_write sid1: 27469 eid1: 48199 sid2: 0 eid2: 0 bflag: 1 qid: 32 cmdid:36903
+          <idle>-0       [022] d.h1. 194567.029551: nvme_sq:  PID 0 qid 32 cpuid 22 iolat 13137 cmd=(nvme_cmd_write) cmdid:40998
+          <idle>-0       [022] dNh1. 194567.029562: nvme_sq:  PID 0 qid 32 cpuid 22 iolat 17558 cmd=(nvme_cmd_write) cmdid:36903
+   kworker/22:1H-680     [022] ...1. 194567.029579: nvme_setup_cmd: cmd_type:nvme_cmd_flush sid1: 27469 eid1: 48200 sid2: 0 eid2: 0 bflag: 1 qid: 32 cmdid:53286
+          <idle>-0       [022] d.h1. 194567.031199: nvme_sq:  PID 0 qid 32 cpuid 22 iolat 1618754 cmd=(nvme_cmd_flush) cmdid:53286
+             fio-36504   [010] ..... 194567.031264: ext4_sync_file_enter: PID 36504 cpuid 10 datasync 0 
+             fio-36504   [010] ..... 194567.031283: nvme_setup_cmd: cmd_type:nvme_cmd_write sid1: 36504 eid1: 2 sid2: 27469 eid2: 48201 bflag: 1 qid: 26 cmdid:16914
+          <idle>-0       [010] d.h1. 194567.031300: nvme_sq:  PID 0 qid 26 cpuid 10 iolat 15918 cmd=(nvme_cmd_write) cmdid:16914
+  jbd2/nvme3n1-8-27469   [022] ..... 194567.031310: nvme_setup_cmd: cmd_type:nvme_cmd_write sid1: 27469 eid1: 48202 sid2: 0 eid2: 0 bflag: 1 qid: 32 cmdid:40999
+  jbd2/nvme3n1-8-27469   [022] ..... 194567.031318: nvme_setup_cmd: cmd_type:nvme_cmd_write sid1: 27469 eid1: 48203 sid2: 0 eid2: 0 bflag: 1 qid: 32 cmdid:36904
+          <idle>-0       [022] d.h1. 194567.031332: nvme_sq:  PID 0 qid 32 cpuid 22 iolat 20818 cmd=(nvme_cmd_write) cmdid:40999
+          <idle>-0       [022] d.h1. 194567.031333: nvme_sq:  PID 0 qid 32 cpuid 22 iolat 14216 cmd=(nvme_cmd_write) cmdid:36904
+   kworker/22:1H-680     [022] ...1. 194567.031356: nvme_setup_cmd: cmd_type:nvme_cmd_flush sid1: 27469 eid1: 48204 sid2: 0 eid2: 0 bflag: 1 qid: 32 cmdid:57383
+          <idle>-0       [022] d.h1. 194567.032955: nvme_sq:  PID 0 qid 32 cpuid 22 iolat 1597637 cmd=(nvme_cmd_flush) cmdid:57383

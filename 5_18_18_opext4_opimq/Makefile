@@ -2,7 +2,7 @@
 VERSION = 5
 PATCHLEVEL = 18
 SUBLEVEL = 18
-EXTRAVERSION = +opimq+fbarrier+time+mq
+EXTRAVERSION = -opext4+opimq
 NAME = Superb Owl
 
 # *DOCUMENTATION*

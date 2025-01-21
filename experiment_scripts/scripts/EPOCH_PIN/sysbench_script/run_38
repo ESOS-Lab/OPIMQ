@@ -1,0 +1,40 @@
+#!/bin/bash
+main() {
+  is_table=0
+  table_size=100000
+  #table_num=100
+  table_num=100
+  run_time=60
+  nthreads=38
+  mysql_connect
+#  reset_tables
+#  do_prepare
+  do_run
+
+}
+do_run () {
+
+#  /home/sysbench/src/lua/oltp_insert.lua --mysql-host=sys_db --mysql-user=root --mysql-password=oslab1234 --mysql-db=sysbench_test --table_size=${table_size} --tables=${table_num}--time=${run_time} --threads={nthreads} run
+  /home/sysbench/src/lua/oltp_insert.lua --mysql-host=sys_db --mysql-user=root --mysql-password=oslab1234 --mysql-db=sysbench_test --table_size=${table_size} --tables=${table_num} --time=${run_time} --threads=${nthreads} run
+  #/home/sysbench/src/lua/oltp_read_only.lua --mysql-host=sys_db --mysql-user=root --mysql-password=oslab1234 --mysql-db=sysbench_test --table_size=${table_size} --tables=${table_num} --time=${run_time} --threads=${nthreads} run
+
+
+}
+do_prepare () {
+
+  sysbench oltp_insert --table_size=${table_size} --tables=${table_num} --threads=40 --mysql-host=sys_db --mysql-user=root --mysql-password=oslab1234 --mysql-db=sysbench_test prepare
+
+}
+mysql_connect () {
+
+	mysql -h sys_db -u root -poslab1234 sysbench_test -e "SHOW TABLES" | awk '/sbtest/{print}'
+
+}
+reset_tables () {
+	is_table=$(mysql -h sys_db -u root -poslab1234 sysbench_test -e "SHOW TABLES" | awk '/sbtest/{print}')
+	for tables in ${is_table};do
+		echo "Drop Table ${tables}"
+	        mysql -h sys_db -u root -poslab1234 sysbench_test -e "DROP TABLE ${tables}"
+	done
+}
+main

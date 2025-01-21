@@ -1,0 +1,31 @@
+My process ID is 20
+After Trap
+Filebench Version 1.5-alpha3
+0.000: Allocated 177MB of shared memory
+0.002: Varmail Version 3.0 personality successfully loaded
+0.002: Populating and pre-allocating filesets
+0.003: bigfileset populated: 1000 files, avg. dir. width = 1000000, avg. dir. depth = 0.5, 0 leafdirs, 14.959MB total size
+0.003: Removing bigfileset tree (if exists)
+0.007: Pre-allocating directories in bigfileset tree
+0.008: Pre-allocating files in bigfileset tree
+0.103: Waiting for pre-allocation to finish (in case of a parallel pre-allocation)
+0.103: Population and pre-allocation of filesets completed
+0.103: Starting 1 filereader instances
+1.108: Running...
+61.187: Run took 60 seconds...
+61.189: Per-Operation Breakdown
+closefile4           17673ops      294ops/s   0.0mb/s    0.002ms/op [0.001ms - 2.675ms]
+readfile4            17673ops      294ops/s   4.8mb/s    2.358ms/op [0.001ms - 104.902ms]
+openfile4            17673ops      294ops/s   0.0mb/s    0.016ms/op [0.004ms - 14.125ms]
+closefile3           17673ops      294ops/s   0.0mb/s    0.005ms/op [0.001ms - 12.812ms]
+fsyncfile3           17673ops      294ops/s   0.0mb/s   63.887ms/op [18.549ms - 328.489ms]
+appendfilerand3      17689ops      294ops/s   2.3mb/s    1.317ms/op [0.004ms - 45.721ms]
+readfile3            17689ops      294ops/s   4.8mb/s    2.491ms/op [0.001ms - 98.960ms]
+openfile3            17689ops      294ops/s   0.0mb/s    0.012ms/op [0.004ms - 10.452ms]
+closefile2           17689ops      294ops/s   0.0mb/s    0.004ms/op [0.001ms - 2.362ms]
+fsyncfile2           17689ops      294ops/s   0.0mb/s   61.824ms/op [21.255ms - 326.879ms]
+appendfilerand2      17713ops      295ops/s   2.3mb/s    0.064ms/op [0.008ms - 13.303ms]
+createfile2          17713ops      295ops/s   0.0mb/s    0.205ms/op [0.025ms - 38.020ms]
+deletefile1          17708ops      295ops/s   0.0mb/s    3.456ms/op [0.027ms - 37.332ms]
+61.189: IO Summary: 229944 ops 3827.411 ops/s 589/589 rd/wr  14.2mb/s 10.430ms/op
+61.189: Shutting down processes

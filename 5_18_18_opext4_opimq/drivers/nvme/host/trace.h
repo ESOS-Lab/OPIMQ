@@ -199,11 +199,9 @@ TRACE_EVENT(nvme_setup_cmd,
 				show_opcode_name(__entry->qid, __entry->opcode, __entry->fctype))
 */
 
-	    TP_printk("cpu:%d qid:%d\t sid1:%d eid1:%d sid2:%d eid2:%d bflag: %d\t cmd_type: %s",
-		      __entry->cpu, 
-		      __entry->qid, __entry->stream_id_1, __entry->epoch_id_1,
-			  __entry->stream_id_2, __entry->epoch_id_2, __entry->bflag, 
-				show_opcode_name(__entry->qid, __entry->opcode, __entry->fctype))
+	    TP_printk("cmd_type:%s sid1: %d eid1: %d sid2: %d eid2: %d bflag: %d qid: %d cmdid:%u", 
+		     show_opcode_name(__entry->qid, __entry->opcode, __entry->fctype), __entry->stream_id_1, __entry->epoch_id_1,
+			  __entry->stream_id_2, __entry->epoch_id_2, __entry->bflag, __entry->qid, __entry->cid)
 
 /*
 	    TP_printk("PID %d cpuid %d QID %d cmdid %u lba:%llu len:%d cmd=(%s)",
@@ -362,9 +360,9 @@ TRACE_EVENT(nvme_sq,
 		__entry->qid, __entry->cid, __entry->sq_head, __entry->sq_tail
 	)
 */
-	TP_printk("%s PID %d qid %d cpuid %d cmdid %u iolat %llu iolat2 %llu cmd=(%s)",
-		__print_process_name(__entry->pname), __entry->pid, __entry->qid, __entry->cpuid, __entry->cid, __entry->iolat, __entry->iolat2, 
-		show_opcode_name(__entry->qid, __entry->opcode, __entry->fctype))
+	TP_printk("%s PID %d qid %d cpuid %d iolat %llu cmd=(%s) cmdid:%d",
+		__print_process_name(__entry->pname), __entry->pid, __entry->qid, __entry->cpuid, __entry->iolat, 
+		show_opcode_name(__entry->qid, __entry->opcode, __entry->fctype), __entry->cid)
 );
 
 #endif /* _TRACE_NVME_H */

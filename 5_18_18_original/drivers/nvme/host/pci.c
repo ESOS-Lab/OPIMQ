@@ -3095,8 +3095,6 @@ static int nvme_probe(struct pci_dev *pdev, const struct pci_device_id *id)
 	dev->nr_poll_queues = poll_queues;
 	dev->nr_allocated_queues = nvme_max_io_queues(dev) + 1;
 
-	// Jieun add for expr.
-	dev->nr_allocated_queues = 40  + 1;
 	if(dev->nr_allocated_queues > nvme_max_io_queues(dev) + 1)
 		dev->nr_allocated_queues = nvme_max_io_queues(dev) + 1;
 

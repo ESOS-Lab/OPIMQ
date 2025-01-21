@@ -1,0 +1,21 @@
+#!/bin/bash
+main () {
+	env_list="Baseline BFS OPIMQ MQFS"
+	test_list="40 100 200 300 400"
+
+	for env_name in ${env_list};do
+		logdir="./results/${env_name}/varmail"
+		for n in ${test_list};do
+			parse_varmail $n | awk '{sum+=$6} END {print sum/1000*0.98}'
+		done		
+	done
+
+}
+
+parse_varmail () {
+	for i in $(seq $1);do
+		cat ${logdir}/$1-${i} | grep "Summary"
+	done
+}
+
+main

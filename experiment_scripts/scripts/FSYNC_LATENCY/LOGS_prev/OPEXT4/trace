@@ -1,0 +1,38 @@
+# tracer: nop
+#
+# entries-in-buffer/entries-written: 26/26   #P:40
+#
+#                                _-----=> irqs-off/BH-disabled
+#                               / _----=> need-resched
+#                              | / _---=> hardirq/softirq
+#                              || / _--=> preempt-depth
+#                              ||| / _-=> migrate-disable
+#                              |||| /     delay
+#           TASK-PID     CPU#  |||||  TIMESTAMP  FUNCTION
+#              | |         |   |||||     |         |
+             fio-40462   [020] .....  1595.785258: nvme_setup_cmd: cmd_type:nvme_cmd_read sid1: 0 eid1: 0 sid2: 0 eid2: 0 bflag: 0 qid: 31 cmdid:45952
+          <idle>-0       [020] d.h1.  1595.785737: nvme_sq:  PID 0 qid 31 cpuid 20 iolat 477578 cmd=(nvme_cmd_read) cmdid:45952
+             fio-40462   [020] .....  1595.952522: nvme_setup_cmd: cmd_type:nvme_cmd_read sid1: 0 eid1: 0 sid2: 0 eid2: 0 bflag: 0 qid: 31 cmdid:50048
+          <idle>-0       [020] d.h1.  1595.952795: nvme_sq:  PID 0 qid 31 cpuid 20 iolat 271389 cmd=(nvme_cmd_read) cmdid:50048
+             fio-40462   [020] .....  1595.952851: nvme_setup_cmd: cmd_type:nvme_cmd_read sid1: 0 eid1: 0 sid2: 0 eid2: 0 bflag: 0 qid: 31 cmdid:29572
+             fio-40462   [020] .....  1595.952851: nvme_setup_cmd: cmd_type:nvme_cmd_read sid1: 0 eid1: 0 sid2: 0 eid2: 0 bflag: 0 qid: 31 cmdid:21379
+             fio-40462   [020] .....  1595.952851: nvme_setup_cmd: cmd_type:nvme_cmd_read sid1: 0 eid1: 0 sid2: 0 eid2: 0 bflag: 0 qid: 31 cmdid:37762
+             fio-40462   [020] .....  1595.952852: nvme_setup_cmd: cmd_type:nvme_cmd_read sid1: 0 eid1: 0 sid2: 0 eid2: 0 bflag: 0 qid: 31 cmdid:62337
+             fio-40462   [020] .....  1595.952852: nvme_setup_cmd: cmd_type:nvme_cmd_read sid1: 0 eid1: 0 sid2: 0 eid2: 0 bflag: 0 qid: 31 cmdid:54144
+          <idle>-0       [020] d.h1.  1595.952900: nvme_sq:  PID 0 qid 31 cpuid 20 iolat 47967 cmd=(nvme_cmd_read) cmdid:29572
+          <idle>-0       [020] d.h1.  1595.952904: nvme_sq:  PID 0 qid 31 cpuid 20 iolat 51571 cmd=(nvme_cmd_read) cmdid:54144
+          <idle>-0       [020] d.h1.  1595.952904: nvme_sq:  PID 0 qid 31 cpuid 20 iolat 51732 cmd=(nvme_cmd_read) cmdid:21379
+             fio-40462   [020] d.h..  1595.952907: nvme_sq:  PID 40462 qid 31 cpuid 20 iolat 55300 cmd=(nvme_cmd_read) cmdid:37762
+             fio-40462   [020] d.h1.  1595.952911: nvme_sq:  PID 40462 qid 31 cpuid 20 iolat 58806 cmd=(nvme_cmd_read) cmdid:62337
+             fio-40504   [024] .....  1596.068795: ext4_sync_file_enter: PID 40504 cpuid 24 datasync 0 
+             fio-40504   [024] .....  1596.068822: nvme_setup_cmd: cmd_type:nvme_cmd_write sid1: 40504 eid1: 0 sid2: 40456 eid2: 0 bflag: 1 qid: 33 cmdid:21031
+  jbd2/nvme3n1-8-40456   [015] .....  1596.068852: nvme_setup_cmd: cmd_type:nvme_cmd_write sid1: 40456 eid1: 1 sid2: 0 eid2: 0 bflag: 0 qid: 8 cmdid:16809
+          <idle>-0       [015] d.h1.  1596.069021: nvme_sq:  PID 0 qid 8 cpuid 15 iolat 165839 cmd=(nvme_cmd_write) cmdid:16809
+          <idle>-0       [024] d.h1.  1596.069023: nvme_sq:  PID 0 qid 33 cpuid 24 iolat 197997 cmd=(nvme_cmd_write) cmdid:21031
+  jbd2/nvme3n1-8-40456   [015] .....  1596.069107: nvme_setup_cmd: cmd_type:nvme_cmd_write sid1: 40456 eid1: 1 sid2: 0 eid2: 0 bflag: 1 qid: 8 cmdid:20905
+  jbd2/nvme3n1-8-40456   [015] .....  1596.069118: nvme_setup_cmd: cmd_type:nvme_cmd_write sid1: 40456 eid1: 2 sid2: 0 eid2: 0 bflag: 1 qid: 8 cmdid:57773
+          <idle>-0       [015] d.h1.  1596.069131: nvme_sq:  PID 0 qid 8 cpuid 15 iolat 20206 cmd=(nvme_cmd_write) cmdid:20905
+          <idle>-0       [015] d.h1.  1596.069131: nvme_sq:  PID 0 qid 8 cpuid 15 iolat 12849 cmd=(nvme_cmd_write) cmdid:57773
+   kworker/15:1H-812     [015] ...1.  1596.069158: nvme_setup_cmd: cmd_type:nvme_cmd_flush sid1: 40456 eid1: 3 sid2: 0 eid2: 0 bflag: 1 qid: 8 cmdid:12713
+          <idle>-0       [015] d.h1.  1596.070781: nvme_sq:  PID 0 qid 8 cpuid 15 iolat 1622193 cmd=(nvme_cmd_flush) cmdid:12713
+             fio-40504   [024] .....  1596.070831: ext4_sync_file_exit: PID 40504 cpuid 24 total_time 2034716 data 28581 journal 2006135 datasync 0 needs_barrier 0 

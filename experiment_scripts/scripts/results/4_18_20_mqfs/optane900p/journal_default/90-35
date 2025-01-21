@@ -1,0 +1,31 @@
+My process ID is 212
+After Trap
+Filebench Version 1.5-alpha3
+0.000: Allocated 177MB of shared memory
+0.001: Varmail Version 3.0 personality successfully loaded
+0.001: Populating and pre-allocating filesets
+0.002: bigfileset populated: 1000 files, avg. dir. width = 1000000, avg. dir. depth = 0.5, 0 leafdirs, 14.959MB total size
+0.002: Removing bigfileset tree (if exists)
+0.040: Pre-allocating directories in bigfileset tree
+0.047: Pre-allocating files in bigfileset tree
+3.360: Waiting for pre-allocation to finish (in case of a parallel pre-allocation)
+3.365: Population and pre-allocation of filesets completed
+3.368: Starting 1 filereader instances
+4.408: Running...
+64.602: Run took 60 seconds...
+64.603: Per-Operation Breakdown
+closefile4           33424ops      555ops/s   0.0mb/s    0.000ms/op [0.001ms - 0.015ms]
+readfile4            33424ops      555ops/s   8.7mb/s    0.027ms/op [0.001ms - 24.030ms]
+openfile4            33424ops      555ops/s   0.0mb/s    0.003ms/op [0.001ms - 2.644ms]
+closefile3           33424ops      555ops/s   0.0mb/s    0.001ms/op [0.000ms - 12.908ms]
+fsyncfile3           33424ops      555ops/s   0.0mb/s    1.001ms/op [0.047ms - 114.962ms]
+appendfilerand3      33424ops      555ops/s   4.4mb/s    0.011ms/op [0.002ms - 14.597ms]
+readfile3            33424ops      555ops/s   4.4mb/s    0.019ms/op [0.001ms - 14.585ms]
+openfile3            33424ops      555ops/s   0.0mb/s    0.003ms/op [0.001ms - 22.017ms]
+closefile2           33424ops      555ops/s   0.0mb/s    0.001ms/op [0.001ms - 10.377ms]
+fsyncfile2           33424ops      555ops/s   0.0mb/s    0.493ms/op [0.062ms - 89.168ms]
+appendfilerand2      33425ops      555ops/s   4.3mb/s    0.011ms/op [0.005ms - 3.169ms]
+createfile2          33425ops      555ops/s   0.0mb/s    0.139ms/op [0.006ms - 62.245ms]
+deletefile1          33425ops      555ops/s   0.0mb/s    0.085ms/op [0.021ms - 39.076ms]
+64.603: IO Summary: 434515 ops 7218.487 ops/s 1111/1111 rd/wr  21.8mb/s 0.138ms/op
+64.603: Shutting down processes

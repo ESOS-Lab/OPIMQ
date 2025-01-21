@@ -1,0 +1,31 @@
+My process ID is 77
+After Trap
+Filebench Version 1.5-alpha3
+0.000: Allocated 177MB of shared memory
+0.022: Varmail Version 3.0 personality successfully loaded
+0.022: Populating and pre-allocating filesets
+0.038: bigfileset populated: 1000 files, avg. dir. width = 1000000, avg. dir. depth = 0.5, 0 leafdirs, 14.959MB total size
+0.038: Removing bigfileset tree (if exists)
+0.313: Pre-allocating directories in bigfileset tree
+0.336: Pre-allocating files in bigfileset tree
+79.746: Waiting for pre-allocation to finish (in case of a parallel pre-allocation)
+79.746: Population and pre-allocation of filesets completed
+79.747: Starting 1 filereader instances
+80.752: Running...
+140.801: Run took 60 seconds...
+140.801: Per-Operation Breakdown
+closefile4           27974ops      466ops/s   0.0mb/s    0.001ms/op [0.001ms - 0.043ms]
+readfile4            27974ops      466ops/s   7.3mb/s    0.011ms/op [0.002ms - 12.608ms]
+openfile4            27974ops      466ops/s   0.0mb/s    0.004ms/op [0.002ms - 5.178ms]
+closefile3           27974ops      466ops/s   0.0mb/s    0.001ms/op [0.001ms - 0.818ms]
+fsyncfile3           27974ops      466ops/s   0.0mb/s    0.838ms/op [0.032ms - 61.006ms]
+appendfilerand3      27974ops      466ops/s   3.6mb/s    0.013ms/op [0.002ms - 9.340ms]
+readfile3            27974ops      466ops/s   3.7mb/s    0.009ms/op [0.002ms - 27.428ms]
+openfile3            27974ops      466ops/s   0.0mb/s    0.004ms/op [0.002ms - 0.560ms]
+closefile2           27974ops      466ops/s   0.0mb/s    0.001ms/op [0.001ms - 0.024ms]
+fsyncfile2           27975ops      466ops/s   0.0mb/s    0.888ms/op [0.038ms - 47.406ms]
+appendfilerand2      27975ops      466ops/s   3.6mb/s    0.014ms/op [0.004ms - 11.554ms]
+createfile2          27975ops      466ops/s   0.0mb/s    0.289ms/op [0.007ms - 161.694ms]
+deletefile1          27975ops      466ops/s   0.0mb/s    0.067ms/op [0.013ms - 88.187ms]
+140.801: IO Summary: 363666 ops 6056.151 ops/s 932/932 rd/wr  18.3mb/s 0.165ms/op
+140.801: Shutting down processes

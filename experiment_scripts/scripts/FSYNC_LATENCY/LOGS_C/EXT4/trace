@@ -1,0 +1,38 @@
+# tracer: nop
+#
+# entries-in-buffer/entries-written: 26/26   #P:40
+#
+#                                _-----=> irqs-off/BH-disabled
+#                               / _----=> need-resched
+#                              | / _---=> hardirq/softirq
+#                              || / _--=> preempt-depth
+#                              ||| / _-=> migrate-disable
+#                              |||| /     delay
+#           TASK-PID     CPU#  |||||  TIMESTAMP  FUNCTION
+#              | |         |   |||||     |         |
+             fio-2728    [014] .....   253.773734: nvme_setup_cmd: PID 2728 cpuid 14 qid 28 cmdid 61824 cmd=(nvme_cmd_read slba=74928, len=7, ctrl=0x0, dsmgmt=0, reftag=0)
+          <idle>-0       [014] d.h1.   253.774361: nvme_sq: iolat 624627 optype nvme_cmd_read
+             fio-2728    [014] .....   253.940653: nvme_setup_cmd: PID 2728 cpuid 14 qid 28 cmdid 384 cmd=(nvme_cmd_read slba=9264, len=7, ctrl=0x0, dsmgmt=0, reftag=0)
+          <idle>-0       [014] d.h1.   253.941130: nvme_sq: iolat 475564 optype nvme_cmd_read
+             fio-2728    [014] .....   253.941185: nvme_setup_cmd: PID 2728 cpuid 14 qid 28 cmdid 12676 cmd=(nvme_cmd_read slba=9208, len=7, ctrl=0x8000, dsmgmt=7, reftag=0)
+             fio-2728    [014] .....   253.941185: nvme_setup_cmd: PID 2728 cpuid 14 qid 28 cmdid 53635 cmd=(nvme_cmd_read slba=9192, len=7, ctrl=0x8000, dsmgmt=7, reftag=0)
+             fio-2728    [014] .....   253.941185: nvme_setup_cmd: PID 2728 cpuid 14 qid 28 cmdid 33154 cmd=(nvme_cmd_read slba=9176, len=7, ctrl=0x8000, dsmgmt=7, reftag=0)
+             fio-2728    [014] .....   253.941186: nvme_setup_cmd: PID 2728 cpuid 14 qid 28 cmdid 12673 cmd=(nvme_cmd_read slba=9160, len=7, ctrl=0x8000, dsmgmt=7, reftag=0)
+             fio-2728    [014] .....   253.941186: nvme_setup_cmd: PID 2728 cpuid 14 qid 28 cmdid 4480 cmd=(nvme_cmd_read slba=9144, len=7, ctrl=0x8000, dsmgmt=7, reftag=0)
+          <idle>-0       [014] d.h1.   253.941227: nvme_sq: iolat 40822 optype nvme_cmd_read
+          <idle>-0       [014] d.h1.   253.941231: nvme_sq: iolat 44477 optype nvme_cmd_read
+          <idle>-0       [014] d.h1.   253.941235: nvme_sq: iolat 49056 optype nvme_cmd_read
+          <idle>-0       [014] d.h1.   253.941236: nvme_sq: iolat 49163 optype nvme_cmd_read
+          <idle>-0       [014] d.h1.   253.941241: nvme_sq: iolat 54494 optype nvme_cmd_read
+             fio-2770    [018] .....   254.057532: ext4_sync_file_enter: dev 259 ino 12 parent 2 datasync 0 PID 2770 cpuid 18
+             fio-2770    [018] .....   254.057555: nvme_setup_cmd: PID 2770 cpuid 18 qid 30 cmdid 33090 cmd=(nvme_cmd_write slba=271280, len=7, ctrl=0x0, dsmgmt=0, reftag=0)
+          <idle>-0       [018] d.h1.   254.058076: nvme_sq: iolat 520053 optype nvme_cmd_write
+  jbd2/nvme3n1-8-2722    [038] .....   254.058112: nvme_setup_cmd: PID 2722 cpuid 38 qid 40 cmdid 37760 cmd=(nvme_cmd_write slba=973340672, len=7, ctrl=0x0, dsmgmt=0, reftag=0)
+          <idle>-0       [038] d.h1.   254.058123: nvme_sq: iolat 10043 optype nvme_cmd_write
+  jbd2/nvme3n1-8-2722    [038] .....   254.058162: nvme_setup_cmd: PID 2722 cpuid 38 qid 40 cmdid 41856 cmd=(nvme_cmd_write slba=973340680, len=71, ctrl=0x0, dsmgmt=0, reftag=0)
+          <idle>-0       [038] d.h1.   254.058182: nvme_sq: iolat 19039 optype nvme_cmd_write
+   kworker/38:1H-762     [038] ...1.   254.058206: nvme_setup_cmd: PID 762 cpuid 38 qid 40 cmdid 896 cmd=(nvme_cmd_flush cdw10=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00)
+          <idle>-0       [038] d.h1.   254.059823: nvme_sq: iolat 1616366 optype nvme_cmd_flush
+   kworker/38:1H-762     [038] ...1.   254.059838: nvme_setup_cmd: PID 762 cpuid 38 qid 40 cmdid 45952 cmd=(nvme_cmd_write slba=973340752, len=7, ctrl=0x4000, dsmgmt=0, reftag=0)
+          <idle>-0       [038] d.h1.   254.063969: nvme_sq: iolat 4130387 optype nvme_cmd_write
+             fio-2770    [014] .....   254.064019: ext4_sync_file_exit: PID 2770 cpuid 14 ino 12 total_time 6484754 data 566879 journal 5917875

@@ -950,7 +950,6 @@ static blk_status_t nvme_queue_rq(struct blk_mq_hw_ctx *hctx,
 	struct request *req = bd->rq;
 	struct nvme_iod *iod = blk_mq_rq_to_pdu(req);
 	blk_status_t ret;
-	char comm[TASK_COMM_LEN];
 	ktime_t	start;
 			
 	/*
@@ -963,38 +962,48 @@ static blk_status_t nvme_queue_rq(struct blk_mq_hw_ctx *hctx,
 	if (unlikely(!nvme_check_ready(&dev->ctrl, req, true)))
 		return nvme_fail_nonready_command(&dev->ctrl, req);
 
-#ifdef ENABLE_OPIMQ
+#ifdef ENABLE_OPIMQ	
 	// Assign epoch id & update epoch counter
-	if (req->stream_id_1 > 0) {
+	if (req->stream_id_1 > 0 && req_op(req) & REQ_OP_FLUSH) {
 		if (req->j_task != NULL) {
-			req->stream_id_2 = req->j_task->pid;
-		} else {
+			req->stream_id_1 = req->j_task->pid;
+			req->epoch_id_1 = atomic_fetch_add(1, &req->j_task->epoch_counter);
 			req->stream_id_2 = 0;
 			req->epoch_id_2 = 0;
-		}
-
-		if (current->is_barrier) {
 			req->barrier_flag = 1;
-			current->is_barrier = 0;
-			current->queue_id = -1;
+		} 	
+	} else {
 
-			/* Set Epoch ID. */
-			req->epoch_id_1 = atomic_fetch_add(1, &current->epoch_counter);
-			
+		if (req->stream_id_1 > 0) {
 			if (req->j_task != NULL) {
-				req->epoch_id_2 = atomic_fetch_add(1, &req->j_task->epoch_counter);
-			} 
-			
-		} else {
-			if (req->stream_id_1 == current->pid) {
-				req->epoch_id_1 = atomic_read(&current->epoch_counter);
+				req->stream_id_2 = req->j_task->pid;
+			} else {
+				req->stream_id_2 = 0;
+				req->epoch_id_2 = 0;
+			}
+
+			if (current->is_barrier) {
+				req->barrier_flag = 1;
+				current->is_barrier = 0;
+				current->queue_id = -1;
+
+				/* Set Epoch ID. */
+				req->epoch_id_1 = atomic_fetch_add(1, &current->epoch_counter);
+
 				if (req->j_task != NULL) {
-					req->epoch_id_2 = atomic_read(&req->j_task->epoch_counter);
+					req->epoch_id_2 = atomic_fetch_add(1, &req->j_task->epoch_counter);
 				} 
+
+			} else {
+				if (req->stream_id_1 == current->pid) {
+					req->epoch_id_1 = atomic_read(&current->epoch_counter);
+					if (req->j_task != NULL) {
+						req->epoch_id_2 = atomic_read(&req->j_task->epoch_counter);
+					} 
+				}
 			}
 		}
 	}
-
 #endif
 	ret = nvme_prep_rq(dev, req);
 

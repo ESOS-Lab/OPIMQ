@@ -1,0 +1,31 @@
+My process ID is 505
+After Trap
+Filebench Version 1.5-alpha3
+0.000: Allocated 177MB of shared memory
+0.001: Varmail Version 3.0 personality successfully loaded
+0.001: Populating and pre-allocating filesets
+0.002: bigfileset populated: 1000 files, avg. dir. width = 1000000, avg. dir. depth = 0.5, 0 leafdirs, 14.959MB total size
+0.002: Removing bigfileset tree (if exists)
+0.214: Pre-allocating directories in bigfileset tree
+0.218: Pre-allocating files in bigfileset tree
+85.573: Waiting for pre-allocation to finish (in case of a parallel pre-allocation)
+85.573: Population and pre-allocation of filesets completed
+85.575: Starting 1 filereader instances
+86.596: Running...
+146.747: Run took 60 seconds...
+146.748: Per-Operation Breakdown
+closefile4           25299ops      421ops/s   0.0mb/s    0.001ms/op [0.000ms - 0.038ms]
+readfile4            25299ops      421ops/s   6.6mb/s    0.013ms/op [0.002ms - 14.747ms]
+openfile4            25299ops      421ops/s   0.0mb/s    0.005ms/op [0.001ms - 14.750ms]
+closefile3           25299ops      421ops/s   0.0mb/s    0.001ms/op [0.001ms - 0.269ms]
+fsyncfile3           25299ops      421ops/s   0.0mb/s    0.510ms/op [0.019ms - 29.537ms]
+appendfilerand3      25300ops      421ops/s   3.3mb/s    0.018ms/op [0.002ms - 20.138ms]
+readfile3            25300ops      421ops/s   3.4mb/s    0.017ms/op [0.001ms - 18.377ms]
+openfile3            25300ops      421ops/s   0.0mb/s    0.006ms/op [0.001ms - 14.053ms]
+closefile2           25300ops      421ops/s   0.0mb/s    0.002ms/op [0.001ms - 13.594ms]
+fsyncfile2           25300ops      421ops/s   0.0mb/s    0.541ms/op [0.027ms - 28.228ms]
+appendfilerand2      25300ops      421ops/s   3.3mb/s    0.015ms/op [0.005ms - 13.120ms]
+createfile2          25300ops      421ops/s   0.0mb/s    1.050ms/op [0.006ms - 221.008ms]
+deletefile1          25300ops      421ops/s   0.0mb/s    0.189ms/op [0.013ms - 61.535ms]
+146.748: IO Summary: 328895 ops 5467.826 ops/s 841/841 rd/wr  16.5mb/s 0.182ms/op
+146.748: Shutting down processes

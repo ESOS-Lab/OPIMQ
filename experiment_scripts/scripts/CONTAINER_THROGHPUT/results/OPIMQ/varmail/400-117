@@ -1,0 +1,31 @@
+My process ID is 369
+After Trap
+Filebench Version 1.5-alpha3
+0.000: Allocated 177MB of shared memory
+0.004: Varmail Version 3.0 personality successfully loaded
+0.004: Populating and pre-allocating filesets
+0.005: bigfileset populated: 1000 files, avg. dir. width = 1000000, avg. dir. depth = 0.5, 0 leafdirs, 14.959MB total size
+0.005: Removing bigfileset tree (if exists)
+2.826: Pre-allocating directories in bigfileset tree
+2.826: Pre-allocating files in bigfileset tree
+3.022: Waiting for pre-allocation to finish (in case of a parallel pre-allocation)
+3.022: Population and pre-allocation of filesets completed
+3.022: Starting 1 filereader instances
+4.027: Running...
+64.238: Run took 60 seconds...
+64.287: Per-Operation Breakdown
+closefile4           4326ops       72ops/s   0.0mb/s    0.011ms/op [0.001ms - 26.290ms]
+readfile4            4326ops       72ops/s   1.1mb/s   19.710ms/op [0.002ms - 347.446ms]
+openfile4            4326ops       72ops/s   0.0mb/s    0.030ms/op [0.004ms - 41.161ms]
+closefile3           4326ops       72ops/s   0.0mb/s    0.008ms/op [0.001ms - 22.733ms]
+fsyncfile3           4326ops       72ops/s   0.0mb/s  239.720ms/op [48.549ms - 573.401ms]
+appendfilerand3      4343ops       72ops/s   0.6mb/s    9.305ms/op [0.004ms - 391.056ms]
+readfile3            4343ops       72ops/s   1.1mb/s   21.793ms/op [0.002ms - 390.331ms]
+openfile3            4343ops       72ops/s   0.0mb/s    0.121ms/op [0.004ms - 214.449ms]
+closefile2           4343ops       72ops/s   0.0mb/s    0.010ms/op [0.001ms - 23.153ms]
+fsyncfile2           4343ops       72ops/s   0.0mb/s  225.720ms/op [50.451ms - 553.929ms]
+appendfilerand2      4366ops       72ops/s   0.6mb/s    0.136ms/op [0.008ms - 75.329ms]
+createfile2          4366ops       72ops/s   0.0mb/s    0.855ms/op [0.024ms - 434.782ms]
+deletefile1          4365ops       72ops/s   0.0mb/s   30.888ms/op [0.022ms - 534.101ms]
+64.287: IO Summary: 56442 ops 936.684 ops/s 144/145 rd/wr   3.3mb/s 42.125ms/op
+64.287: Shutting down processes

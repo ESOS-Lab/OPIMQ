@@ -1,0 +1,31 @@
+My process ID is 20
+After Trap
+Filebench Version 1.5-alpha3
+0.000: Allocated 177MB of shared memory
+0.002: Varmail Version 3.0 personality successfully loaded
+0.002: Populating and pre-allocating filesets
+0.003: bigfileset populated: 1000 files, avg. dir. width = 1000000, avg. dir. depth = 0.5, 0 leafdirs, 14.959MB total size
+0.003: Removing bigfileset tree (if exists)
+0.009: Pre-allocating directories in bigfileset tree
+0.011: Pre-allocating files in bigfileset tree
+0.083: Waiting for pre-allocation to finish (in case of a parallel pre-allocation)
+0.083: Population and pre-allocation of filesets completed
+0.083: Starting 1 filereader instances
+1.094: Running...
+61.188: Run took 60 seconds...
+61.191: Per-Operation Breakdown
+closefile4           19965ops      332ops/s   0.0mb/s    0.002ms/op [0.001ms - 0.956ms]
+readfile4            19965ops      332ops/s   5.5mb/s    2.795ms/op [0.001ms - 84.813ms]
+openfile4            19967ops      332ops/s   0.0mb/s    0.016ms/op [0.004ms - 18.588ms]
+closefile3           19967ops      332ops/s   0.0mb/s    0.003ms/op [0.001ms - 6.146ms]
+fsyncfile3           19967ops      332ops/s   0.0mb/s   55.010ms/op [5.784ms - 244.103ms]
+appendfilerand3      19985ops      333ops/s   2.6mb/s    1.662ms/op [0.003ms - 82.074ms]
+readfile3            19986ops      333ops/s   5.3mb/s    3.035ms/op [0.001ms - 84.247ms]
+openfile3            19987ops      333ops/s   0.0mb/s    0.013ms/op [0.003ms - 11.853ms]
+closefile2           19987ops      333ops/s   0.0mb/s    0.006ms/op [0.001ms - 10.128ms]
+fsyncfile2           19989ops      333ops/s   0.0mb/s   53.131ms/op [5.003ms - 236.800ms]
+appendfilerand2      20005ops      333ops/s   2.6mb/s    0.055ms/op [0.001ms - 17.652ms]
+createfile2          20005ops      333ops/s   0.0mb/s    0.217ms/op [0.024ms - 47.312ms]
+deletefile1          19998ops      333ops/s   0.0mb/s    4.120ms/op [0.022ms - 84.078ms]
+61.191: IO Summary: 259773 ops 4322.846 ops/s 665/665 rd/wr  16.1mb/s 9.234ms/op
+61.191: Shutting down processes

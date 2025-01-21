@@ -1,0 +1,31 @@
+My process ID is 195
+After Trap
+Filebench Version 1.5-alpha3
+0.000: Allocated 177MB of shared memory
+0.002: Varmail Version 3.0 personality successfully loaded
+0.002: Populating and pre-allocating filesets
+0.003: bigfileset populated: 1000 files, avg. dir. width = 1000000, avg. dir. depth = 0.5, 0 leafdirs, 14.959MB total size
+0.003: Removing bigfileset tree (if exists)
+2.353: Pre-allocating directories in bigfileset tree
+2.353: Pre-allocating files in bigfileset tree
+2.452: Waiting for pre-allocation to finish (in case of a parallel pre-allocation)
+2.452: Population and pre-allocation of filesets completed
+2.452: Starting 1 filereader instances
+3.457: Running...
+63.659: Run took 60 seconds...
+63.661: Per-Operation Breakdown
+closefile4           4540ops       75ops/s   0.0mb/s    0.008ms/op [0.001ms - 19.923ms]
+readfile4            4540ops       75ops/s   1.2mb/s   18.301ms/op [0.002ms - 317.150ms]
+openfile4            4540ops       75ops/s   0.0mb/s    0.024ms/op [0.004ms - 20.563ms]
+closefile3           4540ops       75ops/s   0.0mb/s    0.006ms/op [0.001ms - 12.904ms]
+fsyncfile3           4540ops       75ops/s   0.0mb/s  229.541ms/op [60.206ms - 460.907ms]
+appendfilerand3      4545ops       75ops/s   0.6mb/s    9.333ms/op [0.004ms - 322.644ms]
+readfile3            4545ops       75ops/s   1.2mb/s   18.735ms/op [0.002ms - 322.483ms]
+openfile3            4545ops       75ops/s   0.0mb/s    0.094ms/op [0.004ms - 285.508ms]
+closefile2           4545ops       75ops/s   0.0mb/s    0.009ms/op [0.001ms - 24.386ms]
+fsyncfile2           4545ops       75ops/s   0.0mb/s  220.537ms/op [74.554ms - 449.713ms]
+appendfilerand2      4580ops       76ops/s   0.6mb/s    0.122ms/op [0.008ms - 110.540ms]
+createfile2          4580ops       76ops/s   0.0mb/s    1.060ms/op [0.024ms - 501.375ms]
+deletefile1          4579ops       76ops/s   0.0mb/s   27.150ms/op [0.030ms - 582.446ms]
+63.661: IO Summary: 59164 ops 982.767 ops/s 151/152 rd/wr   3.6mb/s 40.320ms/op
+63.661: Shutting down processes

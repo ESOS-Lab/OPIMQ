@@ -1,0 +1,31 @@
+My process ID is 94
+After Trap
+Filebench Version 1.5-alpha3
+0.000: Allocated 177MB of shared memory
+0.002: Varmail Version 3.0 personality successfully loaded
+0.002: Populating and pre-allocating filesets
+0.003: bigfileset populated: 1000 files, avg. dir. width = 1000000, avg. dir. depth = 0.5, 0 leafdirs, 14.959MB total size
+0.003: Removing bigfileset tree (if exists)
+0.065: Pre-allocating directories in bigfileset tree
+0.065: Pre-allocating files in bigfileset tree
+0.126: Waiting for pre-allocation to finish (in case of a parallel pre-allocation)
+0.126: Population and pre-allocation of filesets completed
+0.126: Starting 1 filereader instances
+1.130: Running...
+61.206: Run took 60 seconds...
+61.214: Per-Operation Breakdown
+closefile4           17825ops      297ops/s   0.0mb/s    0.002ms/op [0.001ms - 1.487ms]
+readfile4            17825ops      297ops/s   4.8mb/s    2.397ms/op [0.001ms - 106.458ms]
+openfile4            17825ops      297ops/s   0.0mb/s    0.013ms/op [0.003ms - 8.589ms]
+closefile3           17825ops      297ops/s   0.0mb/s    0.005ms/op [0.001ms - 13.101ms]
+fsyncfile3           17828ops      297ops/s   0.0mb/s   63.235ms/op [13.096ms - 326.748ms]
+appendfilerand3      17843ops      297ops/s   2.3mb/s    1.289ms/op [0.004ms - 104.668ms]
+readfile3            17843ops      297ops/s   4.9mb/s    2.472ms/op [0.001ms - 106.278ms]
+openfile3            17843ops      297ops/s   0.0mb/s    0.016ms/op [0.003ms - 14.623ms]
+closefile2           17843ops      297ops/s   0.0mb/s    0.004ms/op [0.001ms - 5.714ms]
+fsyncfile2           17845ops      297ops/s   0.0mb/s   61.206ms/op [13.473ms - 335.013ms]
+appendfilerand2      17865ops      297ops/s   2.3mb/s    0.069ms/op [0.009ms - 25.609ms]
+createfile2          17865ops      297ops/s   0.0mb/s    0.216ms/op [0.024ms - 35.617ms]
+deletefile1          17865ops      297ops/s   0.0mb/s    3.518ms/op [0.031ms - 98.239ms]
+61.214: IO Summary: 231939 ops 3860.822 ops/s 594/594 rd/wr  14.3mb/s 10.339ms/op
+61.214: Shutting down processes
