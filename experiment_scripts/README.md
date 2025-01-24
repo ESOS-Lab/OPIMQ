@@ -39,7 +39,16 @@ Expected Output
 The file ./LOGS/parsed_data contains the parsed output from the raw trace data.
 This parsed output organizes the trace data into a tab-separated format, making it easier to analyze and visualize.
 For example, a portion of the parsed data might look like this:
-  
+
+| Timestamp   | PName  | PID  | [sid1, eid1] | [sid2, eid2] | bflag | qid | optype          |
+|-------------|--------|------|--------------|--------------|-------|-----|-----------------|
+| 153.34838   | fio    | 2694 | [0, 0]       | [0, 0]       | 0     | 20  | nvme_cmd_read   |
+| 153.465645  | fio    | 2736 | [2736, 0]    | [2688, 0]    | 1     | 1   | nvme_cmd_write  |
+| 153.465664  | jbd2   | 2688 | [2688, 1]    | [0, 0]       | 0     | 2   | nvme_cmd_write  |
+| 153.466377  | jbd2   | 2688 | [2688, 1]    | [0, 0]       | 0     | 2   | nvme_cmd_write  |
+| 153.46639   | jbd2   | 2688 | [2688, 2]    | [0, 0]       | 1     | 2   | nvme_cmd_write  |
+| 153.4664    | kworker| 784  | [2688, 3]    | [0, 0]       | 1     | 4   | nvme_cmd_flush  |
+
 
 ### Column Descriptions
 * Timestamp: The time (in seconds) when the event (create nvme command structure) occurred.
