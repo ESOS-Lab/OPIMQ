@@ -8,13 +8,13 @@ The source code for both OPIMQ and OPFTL is publicly available on GitHub. These 
 ## Getting Started Instructions 
 ### Prerequisites
 * Local machine
-* CentOS 7.9, Linux 5.18.18 
-* **OPIMQ kernel** and **original kernel** are installed and properly configured on your system.
-* SSH client installed on your local machine.
-* Access credentials for the experiment server.
+* **Software**: CentOS 7.9, Linux 5.18.18
+* **Hardware:** Tested on Samsung 980 Pro NVMe SSD (1TB).
+* **OPIMQ kernel** and **Original 5.18.18 kernel** are installed and properly configured on your system.
+* SSH client installed on your local machine (recommended).
 
 ### Quick Test
-1. Switch the your account with root.
+1. Switch your account with root.
 su
 2. We recommend using tmux.
 tmux
@@ -24,7 +24,7 @@ cd ./QUICK_TEST/
 
 The key idea of OPIMQ is to eliminate the overhead of the transfer-and-flush operation by assigning the following identifiers to each write request that requires order preservation: Stream ID, Epoch ID, and Barrier Flag. 
 
-The `quick_test.sh` script is designed to validate the core functionalities of OPIMQ. This script formats the target NVMe device, the Samsung 980 PRO NVMe SSD, with OPEXT4, mounts it to the `/mnt` directory, and verifies the two stream id, spoch id pairs, i.e <major stream id, major epoch id>, <minor stream id, minor epoch id>  and barrier flag valus eassigned to each I/O request by OPIMQ using Linux ftrace. 
+The `quick_test.sh` script is designed to validate the core functionalities of OPIMQ. This script formats the target NVMe device, the Samsung 980 PRO NVMe SSD, with OPEXT4, mounts it to the `/mnt` directory and verifies the two stream id, epoch id pairs, i.e <major stream id, major epoch id>, <minor stream id, minor epoch id>  and barrier flag values assigned to each I/O request by OPIMQ using Linux ftrace. 
 
 quick_test.sh includes the following steps:
 1. OPEXT4 Filesystem Initialization and Mounting
