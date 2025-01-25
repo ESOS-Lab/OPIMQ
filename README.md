@@ -5,8 +5,8 @@ OPIMQ is an order-preserving IO stack designed to enhance the performance of mul
 
 # Publication
 This artifact is part of the research presented in the following publication:
-- **[OPIMQ: Order Preserving IO stack for Multi-Queue Block Device]**  
-  [Jieun Kim, Joontaek Oh, Juwon Kim, Juwon Kim, Seung Won Yoo, and Youjip Won], *USENIX FAST*, 2025.
+- **OPIMQ: Order Preserving IO stack for Multi-Queue Block Device**  
+  Jieun Kim, Joontaek Oh, Juwon Kim, Juwon Kim, Seung Won Yoo, and Youjip Won, *USENIX FAST*, 2025.
   
 ## Merits of OPIMQ
 
