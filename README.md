@@ -3,11 +3,60 @@
 
 OPIMQ is an order-preserving IO stack designed to enhance the performance of multi-queue block devices. It eliminates the inefficiencies of conventional order-preservation methods like transfer-and-flush while maximizing parallelism and maintaining storage order in multi-queue environments.
 
-# Publication
+## Publication
 This artifact is part of the research presented in the following publication:
 - **OPIMQ: Order Preserving IO stack for Multi-Queue Block Device**  
   Jieun Kim, Joontaek Oh, Juwon Kim, Juwon Kim, Seung Won Yoo, and Youjip Won, *USENIX FAST*, 2025.
-  
+
+## Directory Overview
+
+This repository contains the following directories, each serving a specific purpose related to OPIMQ and its experiments:
+You can compile the kernel by running the `recompile.sh` script located in each kernel directory.  
+Simply navigate to the desired kernel directory and execute the following command:
+
+```bash
+make clean
+./recompile.sh
+
+### 1. `5_18_18_barrierfs+opimq`
+- Contains the kernel source and configurations for OPIMQ integrated with BarrierFS.
+- Used for experiments requiring BarrierFS compatibility with OPIMQ.
+- 
+
+### 2. `5_18_18_opext4_opimq`
+- Contains the kernel source and configurations for OPIMQ integrated with OPEXT4.
+- This is the main setup for evaluating OPIMQ's order-preserving capabilities with the OPEXT4 file system.
+
+### 3. `5_18_18_original`
+- Contains the unmodified vanilla Linux kernel (5.18.18).
+- Serves as the baseline kernel for comparison in all experiments.
+
+### 4. `OPFTL`
+- Includes the source code and related files for OPFTL (Order-Preserving Flash Translation Layer).
+- Primarily used for flash-level order preservation experiments.
+
+### 5. `experiment_scripts`
+- Contains scripts for running experiments, including quick tests, benchmarking, and performance evaluations.
+- Refer to the `README` inside this directory for detailed instructions on executing specific tests.
+
+## Configuring the Number of Submission Queues (SQ)
+
+To specify the number of submission queues (SQ) for each kernel, you need to modify the `nvme_probe()` function in the `drivers/nvme/host/pci.c` file.  
+
+1. Open the file:
+   ```bash
+   drivers/nvme/host/pci.c
+2. Locate the `nvme_probe()` function.
+
+3. Modify the `dev->nr_allocated_queues` value:
+   - Set the value to **`(number of I/O queues + 1)`**.  
+     This includes the admin queue, which is always required.
+
+4. Save the changes and recompile the kernel using the `recompile.sh` script:
+   ```bash
+   ./recompile.sh
+
+
 ## Merits of OPIMQ
 
 OPIMQ introduces a novel approach to ensuring storage order in multi-queue block devices, offering several advantages:
