@@ -18,24 +18,23 @@ Simply navigate to the desired kernel directory and execute the following comman
 make clean
 ./recompile.sh
 ```
-### 1. `5_18_18_barrierfs+opimq`
+#### `5_18_18_barrierfs+opimq`
 - Contains the kernel source and configurations for OPIMQ integrated with BarrierFS.
 - Used for experiments requiring BarrierFS compatibility with OPIMQ.
-- 
 
-### 2. `5_18_18_opext4_opimq`
+#### `5_18_18_opext4_opimq`
 - Contains the kernel source and configurations for OPIMQ integrated with OPEXT4.
 - This is the main setup for evaluating OPIMQ's order-preserving capabilities with the OPEXT4 file system.
 
-### 3. `5_18_18_original`
+#### `5_18_18_original`
 - Contains the unmodified vanilla Linux kernel (5.18.18).
 - Serves as the baseline kernel for comparison in all experiments.
 
-### 4. `OPFTL`
+#### `OPFTL`
 - Includes the source code and related files for OPFTL (Order-Preserving Flash Translation Layer).
 - Primarily used for flash-level order preservation experiments.
 
-### 5. `experiment_scripts`
+#### `experiment_scripts`
 - Contains scripts for running experiments, including quick tests, benchmarking, and performance evaluations.
 - Refer to the `README` inside this directory for detailed instructions on executing specific tests.
 
@@ -104,11 +103,7 @@ OPIMQ redefines the balance between performance and storage order, making it a c
 2. Mount the device:
    ```bash
    mount -t ext4 [your-nvme-device] [target directory]
-
-## Artifact for OPIMQ
-The artifacts for OPIMQ's Quick Test and experiments are available in the `experiment_scripts` directory.  
-For detailed information, please refer to the `README` file in the directory.
-
+   ```
 
 # OPFTL: Order-Preserving Flash Translation Layer
 
