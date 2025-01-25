@@ -17,7 +17,7 @@ Simply navigate to the desired kernel directory and execute the following comman
 ```bash
 make clean
 ./recompile.sh
-
+```
 ### 1. `5_18_18_barrierfs+opimq`
 - Contains the kernel source and configurations for OPIMQ integrated with BarrierFS.
 - Used for experiments requiring BarrierFS compatibility with OPIMQ.
@@ -46,6 +46,7 @@ To specify the number of submission queues (SQ) for each kernel, you need to mod
 1. Open the file:
    ```bash
    drivers/nvme/host/pci.c
+   ```
 2. Locate the `nvme_probe()` function.
 
 3. Modify the `dev->nr_allocated_queues` value:
@@ -55,7 +56,6 @@ To specify the number of submission queues (SQ) for each kernel, you need to mod
 4. Save the changes and recompile the kernel using the `recompile.sh` script:
    ```bash
    ./recompile.sh
-
 
 ## Merits of OPIMQ
 
