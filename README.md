@@ -56,6 +56,29 @@ To specify the number of submission queues (SQ) for each kernel, you need to mod
    ```bash
    ./recompile.sh
 
+## Installation and Usage
+
+### Requirements
+- **Linux Kernel:** Version 5.18.18
+- **Platform:** Compatible with NVMe SSDs
+
+### Build and Installation
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/[your-repo]/opimq.git
+2. Build the kernel:
+
+### Mounting with OP-EXT4
+1. Format the device with the OP-EXT4 filesystem:
+   ```bash
+   mkfs -t ext4 [your-nvme-device]
+   ```
+2. Mount the device:
+   ```bash
+   mount -t ext4 [your-nvme-device] [target directory]
+   ```
+
+
 ## Merits of OPIMQ
 
 OPIMQ introduces a novel approach to ensuring storage order in multi-queue block devices, offering several advantages:
@@ -83,27 +106,7 @@ OPIMQ introduces a novel approach to ensuring storage order in multi-queue block
 
 OPIMQ redefines the balance between performance and storage order, making it a critical advancement for modern multi-queue storage systems.
 
-## Installation and Usage
 
-### Requirements
-- **Linux Kernel:** Version 5.18.18
-- **Platform:** Compatible with NVMe SSDs
-
-### Build and Installation
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/[your-repo]/opimq.git
-2. Build the kernel:
-
-### Mounting with OP-EXT4
-1. Format the device with the OP-EXT4 filesystem:
-   ```bash
-   mkfs -t ext4 [your-nvme-device]
-   ```
-2. Mount the device:
-   ```bash
-   mount -t ext4 [your-nvme-device] [target directory]
-   ```
 
 # OPFTL: Order-Preserving Flash Translation Layer
 
