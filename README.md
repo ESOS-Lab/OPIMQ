@@ -3,6 +3,11 @@
 
 OPIMQ is an order-preserving IO stack designed to enhance the performance of multi-queue block devices. It eliminates the inefficiencies of conventional order-preservation methods like transfer-and-flush while maximizing parallelism and maintaining storage order in multi-queue environments.
 
+# Publication
+This artifact is part of the research presented in the following publication:
+- **[OPIMQ: Order Preserving IO stack for Multi-Queue Block Device]**  
+  [Jieun Kim, Joontaek Oh, Juwon Kim, Juwon Kim, Seung Won Yoo, and Youjip Won], *USENIX FAST*, 2025.
+  
 ## Merits of OPIMQ
 
 OPIMQ introduces a novel approach to ensuring storage order in multi-queue block devices, offering several advantages:
@@ -51,8 +56,9 @@ OPIMQ redefines the balance between performance and storage order, making it a c
    ```bash
    mount -t ext4 [your-nvme-device] [target directory]
 
-# Artifact
-
+## Artifact for OPIMQ
+The artifacts for OPIMQ's Quick Test and experiments are available in the `experiment_scripts` directory.  
+For detailed information, please refer to the `README` file in the directory.
 
 
 # OPFTL: Order-Preserving Flash Translation Layer
@@ -118,10 +124,5 @@ OPFTL is ideal for:
 - **Cloud Environments:** Enhancing scalability for containerized applications requiring frequent synchronization (e.g., `fsync()`).
 
 ---
-
-## References
-
-For more details, refer to the paper:  
-*OPIMQ: Order Preserving IO Stack for Multi-Queue Block Device*
 
 
